@@ -1,0 +1,119 @@
+github is a version control system which basically tracks each and every update of a software or a project and its a distributive version control system so everyone can access it .
+-------------------------------------------------------------------------------------------------
+.Git file stores all the history of a git repo or a project , delivers everytime when requires
+-----------------------------------------------------------------------------------------------
+GIT COMMANDS :
+-------------
+after installing git :
+$ pwd  // presently working directory
+$ cd   // change directory
+$ ls  // list content
+----------------------------------------------
+// now storing email and name 
+$ git config --global user.name "SD"
+$ git config --gloal user.email "sd@gmail.com"
+$ git config --list  // this will print infos including name and emails
+$ git config --global code.editor vim/emacs // strictly for linux and mac
+$ git config user.name  // for name
+$ git config user.email  // for email
+---------------------------------------------------------------------------
+$ git status  // gives u update of modified files
+$ git init   // initialize a git repo in that folder .. it basically creates a ".git" file in that folder (hidden file)
+$ git add --a  // it basically adds all the file in staging stage { git add .} (also can be used ig)
+$ git commit -m "message"   // it basically takes a snapshot of the code which will be stores for tracking 
+$ git log   // will show you the number of commits (details of that)
+$ rm -rf .git   // to finish a git repo , it will delete a .git file 
+$ git clone link_of_the_repo name_if_u_want_to_give_any  // for clonig a repo in a folder
+Q   // for quitting anything like log and others 
+-----------------------------------------------------------------------------------------------------------
+$ touch error.log   // creates a file name error.log
+$ touch .gitignore  // creates a file name .gitignore which will ingore some files written within that (if a write error.log inside the .gitignore file it will ingore any changes in error.log  file)  for ignoring a particular type of folder type "*.log" this will ignore all .log files (we can write folders name also to be ignored)
+------------------------------------------------------------------------------------------------------------
+$ git diff   // it basically compares working directory and staging area and shows the changes (also git diff "file name" works for a particular file)
+$ git diff --staged  // compares last commit with staging area
+$ git commit -a -m "message"  // for directly committing skipping the staging part (this will not add untracked files {unadded files})
+$ git rm third.txt  // removing a file (third.txt) this process also makes the changes staged (if u do it manually thn we hv to addthis to be at staged )
+$ git mv third.txt third_renamed.txt  // this will rename the file name to third_renamed.txt and will also make that staged
+$ git rm --cached db.accdb  // this will make db.accdb untracked so thn we can store it into .gitignore to be ignored 
+---------------------------------------------------------------------------------------------------------------
+$ git log -p   // will show you all the lines got removed and added in last  all commits (full info)
+$ git log -p -2  // then it will show last 2 commits
+$ git log --stat  // will give you commits info as a summary
+$ git log --pretty=oneline   // will give infos in one line
+$ git log --pretty=short   //
+$ git log --pretty=full    // 
+$ git log --since=2.days/months/weeks/years  // will show log of that particular time period
+$ git log --pretty=format"%h -- %ae"  // will give u info in that particularformat  (check git dcumentation website (git scm) for format of log)
+-------------------------------------------------------------------------------------------------------------------
+$ git commit --amend  // this command will open an ide ther u can add ur changes to the previous commit made by other person or by urself (the ide will be pretty complex you need to press "I" to start writing basically insert thn pres "Esc" to back thn press ":" and "wq" thn "enter" to add those changes to that commit ) remember u need to add those changed files first (make them at staged position to reflect the changes)
+$ git restore --staged first_rename.txt  // this will unstaged an added file (already being tracked) 
+$ git checkout -- first_renamed.txt   // if u have accidently changed the firsttxt file this will match the file to its initial commit (will restore the previous codes) [this will apply if the file is in unstaged stage only]
+$ git checkout -f   // this will take you to ur previous commit will make all the modifications null 
+$ git remote  // this will show you ur origin (remeber reote means the git repo that u hv on a hosting server most probably GitHub ) // after adding origin that will show origin
+$ git remote -v   /// will give you origin's link to push and fetch(pull)
+$ git restore first.txt   // this will discard all the new changes in that file
+------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
+/// now how to add a new repo 
+1. open git terminal (git bash) in that folder
+2. check git status .. if theres already a git repo or not 
+3. if not use git init to initialise a git repo
+4. check status thn add the files to be tracked and at the staged mode
+5. thn commit the files with a message
+6. thn create a repo link on github .. copy that, remember there commands are given to push to repo
+7. thn use $ git remote add origin <link of the repo>  // this will add origin (basically its the name of the link)
+thn use $ git push -u origin master   // to push the code to the repo 
+
+// if you have permission issue thn check codewithharry git tutorial playlist video no. 13 for SSG and GPG key settings of github
+-------------------------------------------------------------------------------------------------------------------
+// for pushing ur codes to the repo 
+
+1. make modifications on the file 
+2. check status
+3. add the files
+4. then commit changes
+5. use $ git push -u origin master  // link is not required 
+--------------------------------------------------------------------------------------------------------------------
+$ git config --global alias.st status  // by this we want create alias of a command nd use short form of it 
+$ git config --global alias.last 'log -p -1'  // making alias of log -p -1 as last
+-------------------------------------------------------------------------------------------------------------
+//  Branching 
+$ git checkout -b untitled   // this will create a new branch named untitled and will take u to branch untitled
+$ git checkout branchname   // takes you to that branch 
+$ git branch  // will show you your branch 
+$ git merge untitled  // this will merge the branch untitled with the master branch remember that we have to write this code in master branch if there is some base conflict yu have to solve this thn add the modified file thn commit it to merge (give the message at committing through -m .. but if a ide opens use ":wq" ) // after merging $ git push origin master to publish changes to remote
+$ git branch -v   // will give u branches ..commit hashcode nad commit messages
+$ git branch --merged  // will show u merged branches
+$ git branch --no-merged   // not merged branches
+$ git branch -d untitled  // willl delete the branch (but it will give u warning if the branchbis not merged) // for local
+$ git branch -D untitled   // will not ak for anything will delete the branch
+$ git push origin untitled   / will push the untitled branch to remote  (github)
+$ git push origin -d origin untitled   // this will delete the untitled branch from remote
+---------------------------------------------------------------------------------------------------------------
+#IMPORTANT THINGS 
+when ever you push some code to particular branch in remote thn make sure u r in that  right branch (master -> master  , untitled -> untitled)
+make sure u push the code when the tree is clear (git status)
+_________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------
+
+#PERSONAL EXPERIENCE [remember one thing when a branch gets merged into the website it gets deleted as it got merged]
+$ git pull origin master/untitled   // for pulling the changes from github to your local(after pulling you hv to add . and then commit for that change)
+$ git push origin master/untitled    // for pushing the changes permanently from ur local to github
+$ git fetch   // check this out for pulling changes
+// imp. for updating your branch you hv to select the branch in your repo thn click on fetch and upstream on github thn i will upadted then pull the changes by git pull
+// for pulling a new app to ur local 
+$ python manage.py makemigrations "app name" // like "EQuest"
+$ python manage.py migrate   // it will a new database(db.sqlite)
+$ python manage.py migrate --run-syncdb   // 
+$ winpty python manage.py createsuperuser  // to create superuser in git bash
+$ pip install pillow   // requiredment installation
+$ code .  // for opening VScode
+$ cd ..  // for going back (maybe)
+// FOR MERGING ANY PR TO YOUR ANY BRANCH..
+FIRST... do merging
+$ git pull
+// FOR ADDING THE BACKEND CHANGES U HAVE TO DO MAKEMIGRATIONS AND MIGRATE
+$ python manage.py makemigrations
+$ python manage.py migrate
+ 
+

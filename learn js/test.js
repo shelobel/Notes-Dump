@@ -96,7 +96,7 @@ function save() {
 
 // here we use if - else if -else statement like C/C++ but here we use '===' for equal to or for '==' 
 
-// we can use '==' also but '===' is more strict (as == doesnt differtiate btw string and number ("100" & 100) )  
+// we can use '==' also but '===' is more strict (as == doesnt differentiate btw string and number ("100" & 100) )  
 
 if(sum < 21){
     console.log("do u want to draw another card")
@@ -122,7 +122,7 @@ let msg = ""
 // another way of selectig elements 
 let sumEL = document.querySelector("#sum-el") // here by giving # infront of sum-el to define that as a id (same like css selector)
 
-// now creating an array .. the arrays in js are dynamic in size, they dont need any preclculated size for storing elements and they can store all kind of data types in an single array..
+// now creating an array .. the arrays in js are dynamic in size, they dont need any precalculated size for storing elements and they can store all kind of data types in an single array..
 
 let Array = ["supratim", 20, true] // here we hv string , int and boolean together in an array, we can access it through array index
 
@@ -164,13 +164,13 @@ function fastestTime() {
     }
 }
 
-// we can store the value of retrun in any variable 
+// we can store the value of return in any variable 
 let B = fastestTime()
 console.log(B)
 
 // in js the important point is if we write a function way down in out ide we can still access that at line one
 
-// hoe to create a random No. 
+// how to create a random No. 
 
 let randomNumber = Math.random() * (number) // its range is from 0.000000 to 0.999999 btw (0-1)
 console.log(randomNumber)
@@ -180,22 +180,23 @@ console.log(randomNumber)
 let flooredNumber = Math.floor(12.4) // floor gives us integer less than the number itself
 
 console.log(flooredNumber)
-// so waht we do ,, we basically use floor and random together 
+// so what we do ,, we basically use floor and random together 
 
 let RandomNumber = Math.floor(Math.random() * 6) // this will give no. frm 0-5
 
 
-// logical operators are same as pther languages && || etc
+// logical operators are same as other languages.. (&& || etc)
 // remember nested if's are also applicable 
 
 // objects in js (its like a different data type)
+// similar like c++ objects but here we dont need to mention the data type for each part of the object 
 
 let player = {
     name: "Per",
     chips: 145,
     experience: ["Django", "js", 20]
-} // its syntx is a bt like array and structure .. the ':' is must and dont forget to use "," 
-// how to use this ?
+} // its syntx is a bit like array and structure .. the ':' is must and dont forget to use "," 
+// how to use this ?3
 player.name,  player.chips // like structure
 // we can store all kind of data type in that object like we can store boolean and arrays too
 console.log(player.experience) // dot operator
@@ -205,6 +206,7 @@ console.log(player["experience"]) // this also runs
 // basically for array in js we have functions like pop(), push(), unshift(), shift() 
 let document = ["india", "canada", "usa", "russia"]
 // now 
+// here array is dynamic.. works quite alike a doubly ended queue..
 document.pop()  // deletes the last element
 document.push("china") // adds element at the last
 document.shift() // deletes the first element
@@ -212,14 +214,14 @@ document.unshift("india") // adds the element at the first
 
 // chrome extension 
 
-// here when we call a fumction by clicnking or something like that we add "onclick=function()" like this inside html 
+// here when we call a function by clicking or something like that we add "onclick=function()" like this inside html 
 {/* <button id="input-btn" onclick="saveLead()">SAVE</button> */}
 // but here we will use event listener 
  
 // in js 
 let saveBtn = document.getElementById("input-btn")
 saveBtn.addEventListener("click", function(){
-    console.log("Button clicked")
+    console.log("Button clicked")  // really really important
  
 }) // here this function will run by clicking the "SAVE" btn
 
@@ -231,9 +233,9 @@ document.getElementById("save-el").value // this will give you the exact value {
 
 // the difference btw innerHTML and textcontent 
 ulEl.textcontent += "<li>" + myLeads[i] + "</li>"
-// this will print <li>www.example.org</li>
+// this will print <li>www.example.org</li> (wiill print like string)
 
-ulEl.innerHTML += "<li>" + myLeads[i] + "</li>" // THIS will print the right thing with html tags
+ulEl.innerHTML += "<li>" + myLeads[i] + "</li>" // THIS will print the right thing with html tags (that will exactly execute the html tags)
 
 // remember when we use .innerHTML it will clear the html and will add another one so use += for this
 
@@ -242,7 +244,7 @@ const li = document.createElement("li") // this will create the li html tag
 li.textContent = myLeads[i]
 ulEl.append(li) //here append will add the li tag
 
-//template strings
+//template strings // (check this thing on documentation and study)
 listItems += `
 <li>
 <a target = '_blank' href='${myLeads[i]}'>"
@@ -280,9 +282,9 @@ localStorage.clear() // clears the storage
 // here's the answer
 let myLeads = ["www.awesomelead.com", "www.example.org"]  //an array
 myLeads = JSON.stringify(myLeads)  // this will convert that to string
-console.log(typeof myLeads) // this will print typeof that element
+console.log(typeof myLeads) // this will print typeof that element (and here this will be string)
 
-let myLeads = `["www.awesomelead.com", "www.example.org"]` // now this is a string 
+let myLeads = `["www.awesomelead.com", "www.example.org"]` // now this is a string (check the notations)
 myLeads = JSON.parse(myLeads)  // this will convert that into an array{USE MDN references} now you can push value like array
 
 // truthy and falsy values
@@ -297,9 +299,9 @@ NaN  // not a number
 
 // passing parameter to function]
 // the function paramter will behave like same like other languages like C or C++, that will take the local variable or the local data as the argument 
-// in the case of passing the value we an pass anyname like we dont need to define the datat type as the language is smart enough to understand the variable type like in the renderLeads function if we pass renderLeads(yolo) {and do code accordingly thn it will work same(we dont need to mention that as array or other)}
+// in the case of passing the value we an pass anyname like we dont need to define the data type as the language is smart enough to understand the variable type like in the renderLeads function if we pass renderLeads(yolo) {and do code accordingly thn it will work same(we dont need to mention that as array or other)}
 
-// now the important thing about passing arguments that js only takes name as a parameter so if it takes 2 parameters and u pass only one then it will take the parameter as the first one and the other one will be as undefined like renderLeads(greetings, name)  2 arguments if we pass renderLeads("welcome") this we take as greetings and the name will be undefined 
+// now the important thing about passing arguments that js only takes name as a parameter so if it takes 2 parameters and u pass only one then it will take the parameter as the first one and the other one will be as undefined like renderLeads(greetings, name), 2 arguments if we pass renderLeads("welcome") this we take as greetings and the name will be undefined 
 // and we can use template parameter here also like ${greetings}, ${name}
 
 // the special kind of object (its basically object in an array) (writing for now )

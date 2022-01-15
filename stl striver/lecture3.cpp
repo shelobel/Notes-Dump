@@ -3,9 +3,9 @@ using namespace std;
 int main(){
 
     // another container
-    // bitset (ii is of int data type)
-    // int data type takes around 16bits
-    // char  takes 8 bits..
+    // bitset (it is of int data type)
+    // int data type takes around 16bits.. 2bytes
+    // char  takes 8 bits.. 1 byte
     bitset<10> bt;  // it takes only 1 bit.. creates an array kind of structure and only stores 1 or 0.. so nrmally takes 1 bit
     // it cuts out the space complexity very well as an array of int or char will take 8bit or 16 bit for storing an element of an array.. so it takes very very less space compared to that..
     // this bitset generally use in segment tree to store value of node..

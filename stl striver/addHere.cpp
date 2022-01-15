@@ -10,6 +10,8 @@ int main()
 {
     // Take any string
     string s1 = "Geeks";
+    // here we can use the string s1 as a string
+    // s1[1] will give us "e"   (remember)
  
     // Copy three characters of s1 (starting
     // from position 1)

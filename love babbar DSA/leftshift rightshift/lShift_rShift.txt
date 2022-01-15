@@ -10,9 +10,9 @@ but for big posetive number the case is different
 010000....0010   move that by one place  -> 100000....0100  now as the first bit is 1 so the number is negative.. SO DONT ALWAYS MULTIPLY WITH 2
 
 now right shift 
-(5>>2) // moves each and eveery bit of 5 towards right by 2 places
+(5>>2) // moves each and every bit of 5 towards right by 2 places
 00000....0101 -> 00000....0001 .. now its 1
 
 basically it got divided by 2 for each right shift ((5/2)/2) = 1
 
-FOR NEGATIVE NUMBER ITS TOTALLY COMPILER DEPENDENT ( as we dont know the padding would be of 0 or 1.. unlike posetive number (paddiing 1 always))
+FOR NEGATIVE NUMBER ITS TOTALLY COMPILER DEPENDENT ( as we dont know the padding would be of 0 or 1.. unlike posetive number (padding 1 always))

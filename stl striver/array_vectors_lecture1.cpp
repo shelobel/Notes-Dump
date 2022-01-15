@@ -1,11 +1,11 @@
-#include <bits/stdc++.h>   // one header file to include all the header files ... dont need to add them separately... but in interview and all dont do this as this bits/stdc++ will atke a lot of time to import that files thats not for the time complexity
+#include <bits/stdc++.h>   // one header file to include all the header files ... dont need to add them separately... but in interview and all... dont do this as this bits/stdc++ will take a lot of time to import that files thats not good for the time complexity
 using namespace std;
 namespace raj {
     int val = 50;
     int getVal(){
         return val * 10;
     }
-}  // what is namespace ? its ike a collection of standard functions in c++..here we have defined our own namespace called raj.. for accessing that we need to use raj::val or raj::getVal()
+}  // what is namespace ? its ike a collection of standard functions in c++..here we have defined our own namespace called raj.. for accessing that we need to use raj::val or raj::getVal()   .. ("::" scope resolution operator)
 
 int main() {
     double val = 10;
@@ -33,7 +33,7 @@ struct node {
 // int main2(struct node) {
         // wrong way to do that ..
     // node rj;
-    // rj.name = "striver";
+    // rj.name = "striver";  // and also we cant do this in C
     // rj.age = 21;
     // rj.gender = '1';
 
@@ -70,25 +70,25 @@ Arr.at(0); // will give you element at any index..same as vector...
 
 // FEW BASIC INTERATORS.. (works for all the data types)
     // begin(), end(), rbegin(), rend();
-// as we know that array is contigious allocation of memory... so the begin() fn gives us the address pf the first one.. it basically returns a pointer value which exactly points to the first element[index 0]... the rbegin() is reverse of begin it exactly points the ned of the array (or any data type)... in case of end().. it points to the next element of the last element (remember its very very important.. it doesnt give u the address of the last element but the element after the last one[may be garbage iin max cases]) .. and rend(is basically reverse of end() so it basically gives the element before the 1st element.. (like index -1)... )
+// as we know that array is contigious allocation of memory... so the begin() fn gives us the address pf the first one.. it basically returns a pointer value which exactly points to the first element[index 0]... the rbegin() is reverse of begin it exactly points the end of the array (or any data type)... in case of end().. it points to the next element of the last element (remember its very very important.. it doesnt give u the address of the last element but the element after the last one[may be garbage in max cases]) .. and rend(is basically reverse of end() so it basically gives the element before the 1st element.. (like index -1)... )
 
 // implimentaion...(check the syntax)
 
 array<int, 5> arr ={1, 2, 3, 4, 5};
 
-for(auto it = arr.begin(); it!=arr.end(); it++){  // correct syntax
+for(auto it = arr.begin(); it!=arr.end(); it++){  // correct syntax (this is a nrml loop in which we have used "auto" data type)
     cout << *it << " ";
 }
 for(auto it = arr.rbegin(); it!=arr.rend(); it++){   // wll this work ??? 
     cout << *it << " "; 
-    }                            // yes that will work we dont need to do it-- cz... there rbegin is in use.. so that has a natural direction towards backward so it++ will take that to backward not forward so that will print the entire array in reverse order
+    }                            // yes that will work we dont need to do "it--"" cz... there rbegin is in use.. so that has a natural direction towards backward so "it++" will take that to backward not forward so that will print the entire array in reverse order
 
 for(auto it = arr.end() - 1; it>=arr.begin(); it--){
     cout << *it << " ";   // thats the case of a nrml direction reverse order..
 }
 // for each loop... this will take each element of the array we dont need dereference it... here it is not a pointer
 
-for(auto it: arr){
+for(auto it: arr){    // this is the C++ 14 type loop
     cout << it << " ";   // check a qsn ... how does it reaches the end condition..
 }
 
@@ -126,8 +126,8 @@ vector<int> vec(4, 0);  // will create {0, 0, 0, 0}
 // after this we can also push_back and all that ..
 
 // now what we need to do if you want to copy the entire 
-vector<int> vec1(vec.begin(), vec.end());  // this will copy that entire vector till vec.end()-1 [remember that it doesnt include the last element... its basicall '['  , ')' '[' -> means including ')' -> means excluding  ]
-vector<int> vec1(vec);
+vector<int> vec1(vec.begin(), vec.end());  //(here we can give the count of copying stuffs) this will copy that entire vector till vec.end()-1 [remember that it doesnt include the last element... its basically '['  , ')'..... '[' -> means including ')' -> means excluding  ]
+vector<int> vec1(vec);  // this copies the entire vec
 
 
 //now ..

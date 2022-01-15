@@ -11,12 +11,12 @@ int main() {
     cout << arr.size();
     cout <<endl;
     cout << arr.size();
-    set<int> st;  // declaring that data type set.. int is the data which we are going to use ..its can be anything as usual..
+    set<int> st;  // declaring that data type set.. int is the data which we are going to use ..it can be anything as usual..
     for(int i=0; i<5; i++){
         st.insert(arr[i]); // insert function is basically like push_back for sets..
     }
     //now what set will do ??
-    //  this set will insert only unique elements and that too in ascending order like 1.. 2.. 5..  complexity fr this would be logN (n is the number of elements in set)
+    //  this set will insert only unique elements and that too in ascending order like 1.. 2.. 5..  complexity for this would be logN (n is the number of elements in set)
     // to access the elements we cant use index number or at operator.. we need to use begin().. end().. iterators ..which will provide that pointer through will we can access
 
     // ERASE func
@@ -29,12 +29,12 @@ int main() {
     set<int> st1 ={1, 3 , 5 ,6}; 
     set<int> st2(st1.begin(), st1.end());  // copies the whole st1
 
-    // find fuunc
+    // find func
     auto it = st1.find(5);  // this will point to 5 and will retrun the pointer in it. (complexity logN)
     auto it = st1.find(10);  // this will make it = st1.end()
 
     st.emplace(8);  // same as insert but faster..
-    //    REMEMBER WE CAN HAVE A ARRAY ...SET.. VECTOR OR ANYTHING OF ANY DATA TYPE LIKE int ..char..string and all... IF WE MAKE A USTOM DATA TYPE USING struct WE CAN ALSO HAVE A SET OF THAT DATA TYPE... WILL  HAVE THE SAME PROPERTIES BUT IT WILL WORK FOR TAT PARTCULAR CUSTOM DATA TYPE...
+    //    REMEMBER WE CAN HAVE A ARRAY ...SET.. VECTOR OR ANYTHING OF ANY DATA TYPE LIKE int ..char..string and all... IF WE MAKE A cUSTOM DATA TYPE USING struct WE CAN ALSO HAVE A SET OF THAT DATA TYPE... WILL  HAVE THE SAME PROPERTIES BUT IT WILL WORK FOR ThAT PARTCULAR CUSTOM DATA TYPE...
 
     // ITERTAION
     for(auto it = st1.begin(); it!=st1.end(); it++) {
@@ -48,7 +48,7 @@ int main() {
 
     st1.erase(st1.begin(), st1.end());  //deletes the entire set
      
-    st1.count(2);   // will give the number of count of 2
+    st1.count(2);   // will give the number of count of 2(will be 1 always for ordered set)
 
     // UNORDERED SET...
 
@@ -58,7 +58,7 @@ int main() {
     ust.insert(2);
     ust.insert(5);
     ust.insert(7);
-    // this insertions will be random... unlike set..
+    // this insertions will be random... unlike set..(it also stores all the unique elements)
 
     // but the best part is time complexity...
     //  the avg time complexity is O(1);
@@ -67,7 +67,7 @@ int main() {
 
     // MULTI SET...
 
-    // multi set is like a dtata type which stores all the elements of a set.. not like the unique ones but all the elements in sorted order...
+    // multi set is like a data type which stores all the elements of a set.. not like the unique ones but all the elements in sorted order...
     multiset<int> ms;
     ms.insert(1);
     ms.insert(1);
@@ -77,9 +77,9 @@ int main() {
     ms.insert(3);
     // the set will become {1, 1, 2, 2, 3, 3}
     // all the functions are same..
-    ms.erase(2);  // will erase all the 2's there..
+    ms.erase(2);  // will erase all the 2's there..(as its a multi set)
     auto it = ms.find(2); // will give the pointer of the 1st 2..
-    ms.clear(); // thsi will erase all the stuffs in the set..
+    ms.clear(); // this will erase all the stuffs in the set..
     ms.erase(ms.begin(), ms.end()); // for erasing from begin to end
     ms.erase(ms.find(2)); // will erase the first 2
     ms.erase(ms.find(2), ms.find(2) + 2);  // will dlt two ..2s 
@@ -96,8 +96,8 @@ int main() {
 
 void main1() {
     
-    // what is mapp ??
-    // map is basically a datat type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a mapp of like string and thn int than it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
+    // what is map ??
+    // map is basically a data type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a mapp of like string and thn int than it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
     
     // time complexity is logN
     map<string, int> mpp; //syntax of mapp data type
@@ -109,7 +109,7 @@ void main1() {
     mpp["raj"] = 69;  // mpp.emplace("raj", 69); this is also same but a bit faster..
     // this raj will overlap that first raj..
 
-    // all the functions wokrs here
+    // all the functions works here
     mpp.erase("raj");  // only the key name // mpp.erase("keyname");
 
     mpp.clear(); // for erasing all the stuffs
@@ -127,7 +127,7 @@ void main1() {
 
     // how to print or iterate..
 
-    // a mapp is basically a pair(DATA TYPE) ..LIKE WE CAN ASSUME THAT.. it behaves like that i case of iteration and stuffs
+    // a mapp is basically a pair(DATA TYPE) ..LIKE WE CAN ASSUME THAT.. it behaves like that in case of iteration and stuffs
 
     // PAIR..
     pair<int,int> pr;  // syntax for pair
@@ -192,7 +192,7 @@ void main2() {
         // for deleting the stack ... there is no clear func..
         while(!st.empty()) {
             st.pop();
-        }  // will dlt the entire stack by poping each adn every element..
+        }  // will dlt the entire stack by poping each and every element..
         cout << st.size(); // will give u the size;
         // if stack is empty and we use .top() then that will give an error..
         stack<int> st;

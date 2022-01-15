@@ -4,8 +4,8 @@ in pattern problems we hv to think and observe properly .. we need to check he n
 * * * *
 * * * *
 * * * *
-for this kind of pattern we are observing that we have 4 rows and for each rows we have columns exactly same number of rows ..(this approach is very important)
-we will have 2 integers i & j .. one integer i will go for row (like it will trace all the rows one by one) & one integer we have j that will move horizontally for each row no. of times equal to row.. and we will make the pattern.. (remeber we need to have '\n' after one full row done..)
+for this kind of pattern we are observing that we have 4 rows and for each rows we have columns exactly same number of rows ..(this approach is very important) [BASICALLY COUNTING IN TERMS OF ROW]
+we will have 2 integers i & j .. one integer i will go for row (like it will trace all the rows one by one) & one integer we have j that will move horizontally for each row no. of times equal to row.. and we will make the pattern.. (remember we need to have '\n' after one full row done..)
 
 always observe the terms related to index number 
 for 
@@ -13,7 +13,7 @@ for
 2 3      i=2
 3 4 5    i=3
 4 5 6 7  i=4
- for this kind of pattern we should observe the pattern with respect to the index number it will be easier to observe and make a formul out of that.. 
+ for this kind of pattern we should observe the pattern with respect to the index number it will be easier to observe and make a formula out of that.. 
 
 for patterns like 
 A A A
@@ -25,12 +25,12 @@ like char = 'A' + 1;
 this will give us B;
 
 now its time for space and star problems .... 
-here we r gonna use more than one loop inside one loop for printing space .. stars adn numbers separetely .. we are going to break the structure into few parts and we r gonna make loops for each and every part and print it ...
+here we r gonna use more than one loop inside one loop for printing space .. stars and numbers separetely .. we are going to break the structure into few parts and we r gonna make loops for each and every part and print it ...
 
 _ _ _ *
 _ _ * *
 _ * * *
-* * * *   // for this kind of pattern where "_" is space ... we are gonna break it to 2 different parts one for the spaces to print and one for the stars ... (wew need 2 loops inside a loop)
+* * * *   // for this kind of pattern where "_" is space ... we are gonna break it to 2 different parts one for the spaces to print and one for the stars ... (we need 2 loops inside a loop)
 
 _ _ _ 1
 _ _ 1 2 1

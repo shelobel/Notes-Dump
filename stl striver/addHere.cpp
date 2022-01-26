@@ -19,6 +19,28 @@ int main()
  
     // prints the result
     cout << "String is: " << r;
+
+
+    // FOR COUNTING ELEMENTS
+    // array
+    int arr[] = { 3, 2, 1, 3, 3, 5, 3 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Number of times 3 appears : "
+         << count(arr, arr + n, 3);
+
+    // vector
+    vector<int> vect{ 3, 2, 1, 3, 3, 5, 3 };
+    cout << "Number of times 3 appears : "
+         << count(vect.begin(), vect.end(), 3);
+
+    // string
+    
+        string str = "geeksforgeeks";
+  
+    cout << "Number of times 'e' appears : " 
+         << count(str.begin(), str.end(), 'e');
+  
+
  
     return 0;
 }

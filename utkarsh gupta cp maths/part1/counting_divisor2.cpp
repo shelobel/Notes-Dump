@@ -9,11 +9,11 @@ int cnt = 0;
 for(int i = 1; i*i<=n; i++) {
     if(n%i == 0) {  // we are adding for i
         cnt++;
-        if(i != (n/i)) {  // we are adding for (n/i) .. one edge case will be there if n is perfect square then wwe will count same element 2 times so we have to test before counting 
+        if(i != (n/i)) {  // we are adding for (n/i) .. one edge case will be there if n is perfect square then we will count same element 2 times so we have to test before counting 
             cnt++;
         }
     }
 }
-/// here the TTC is O(n^(1/2))
+/// here the TC is O(n^(1/2))
 return 0;
 }

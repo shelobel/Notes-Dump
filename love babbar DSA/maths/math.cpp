@@ -9,7 +9,6 @@ bool isPrime(int n) {
         for(int i=2; i<n; i++) {
             if(n%i == 0){
                 return false;
-                break;   // i think break is not required
             }
         }
         return true;
@@ -38,8 +37,8 @@ int countPrime(int n) {
 // SIEVE OF ERATOSTHENES THEORY
 int countPrimeNo(int n) {
     int cnt = 0;
-    vector<bool> vec(n+1, true);
-    vec[0] = vec[1] = false;
+    vector<bool> vec(n+1, true);  // we took a vec of n+1 cz we will get te elements from 1 to n (0 is extra)
+    vec[0] = vec[1] = false;  // as we know 0 and 1 is not prime number
     for(int i = 2; i<n; i++) {
         if(vec[i]) {
             cnt++;
@@ -67,7 +66,7 @@ int gcd(int a, int b) {  // pass 2 numbers and get gcd ( we also have a recursiv
     else if(b == 0) {
         return a;
     }
-    else {
+    else {                  // else {return gcd(a-b, b);}
         while(a!=b) {
             if(a>b){
                 a = a-b;
@@ -76,7 +75,7 @@ int gcd(int a, int b) {  // pass 2 numbers and get gcd ( we also have a recursiv
                 b = b-a;
             }
         }
-        return a;
+        return a;  // if the numbers are equal then it will return a(same number so doesnt matter)
     }
 }
 

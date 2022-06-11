@@ -1,0 +1,3 @@
+// so we will install virtual env to separate same workspace and to do our work separately
+ // https://www.javatpoint.com/django-virtual-environment-setup#:~:text=The%20virtual%20environment%20is%20an,create%20an%20isolated%20Python%20environment.
+ // cmds for linux

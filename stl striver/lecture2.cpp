@@ -97,7 +97,7 @@ int main() {
 void main1() {
     
     // what is map ??
-    // map is basically a data type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a mapp of like string and thn int than it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
+    // map is basically a data type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a map of like string and thn int than it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
     
     // time complexity is logN
     map<string, int> mpp; //syntax of mapp data type

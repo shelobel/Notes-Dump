@@ -7,7 +7,7 @@ int i=1;
 
 while(i<=n) {
     int j=1;
-    char ch ='A' + i + j - 2;
+    char ch ='A' + i + j - 2;  // remember for increasing or decreasing kind of pattern we can use j as it'll increase or decrease eventually but i not(in the inside loop) else we can use any extra variable for that
     while(j<=n){
         cout << ch << " ";
         j++;

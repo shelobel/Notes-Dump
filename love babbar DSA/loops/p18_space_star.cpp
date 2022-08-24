@@ -20,3 +20,8 @@ while(i<=n) {
 }
 return 0;
 }
+// we are printing 
+// _ _ _ *
+// _ _ * *
+// _ * * *
+// * * * * 

@@ -4,9 +4,9 @@ using namespace std;
 
 int main() {
     // SET
-    // what is set ?.. its basically based on red_black.. avl.. and BS trees..
+    // what is set ?.. its basically based on red_black.. avl.. and BST..
 
-    // if u r given a unsorted array of set of elements and asks you to find the unique number of elements.. we will set
+    // if u r given an unsorted array of set of elements and asks you to find the unique number of elements.. we will set
     array<int, 5> arr = {2, 1, 2, 5, 2};
     cout << arr.size();
     cout <<endl;
@@ -30,11 +30,11 @@ int main() {
     set<int> st2(st1.begin(), st1.end());  // copies the whole st1
 
     // find func
-    auto it = st1.find(5);  // this will point to 5 and will retrun the pointer in it. (complexity logN)
+    auto it = st1.find(5);  // this will point to 5 and will return the pointer in it. (complexity logN)
     auto it = st1.find(10);  // this will make it = st1.end()
 
     st.emplace(8);  // same as insert but faster..
-    //    REMEMBER WE CAN HAVE A ARRAY ...SET.. VECTOR OR ANYTHING OF ANY DATA TYPE LIKE int ..char..string and all... IF WE MAKE A cUSTOM DATA TYPE USING struct WE CAN ALSO HAVE A SET OF THAT DATA TYPE... WILL  HAVE THE SAME PROPERTIES BUT IT WILL WORK FOR ThAT PARTCULAR CUSTOM DATA TYPE...
+    //    REMEMBER WE CAN HAVE AN ARRAY ...SET.. VECTOR OR ANYTHING OF ANY DATA TYPE LIKE int ..char..string and all... IF WE MAKE A CUSTOM DATA TYPE USING struct WE CAN ALSO HAVE A SET OF THAT DATA TYPE... WILL  HAVE THE SAME PROPERTIES BUT IT WILL WORK FOR ThAT PARTCULAR CUSTOM DATA TYPE...
 
     // ITERTAION
     for(auto it = st1.begin(); it!=st1.end(); it++) {
@@ -48,12 +48,12 @@ int main() {
 
     st1.erase(st1.begin(), st1.end());  //deletes the entire set
      
-    st1.count(2);   // will give the number of count of 2(will be 1 always for ordered set)
+    st1.count(2);   // will give the number of count of 2(will be 1 always for ordered set or 0 if the element is not present)
 
     // UNORDERED SET...
 
     unordered_set<int> ust;
-
+    // based on hashing 
     ust.insert(6);
     ust.insert(2);
     ust.insert(5);
@@ -97,7 +97,7 @@ int main() {
 void main1() {
     
     // what is map ??
-    // map is basically a data type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a map of like string and thn int than it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
+    // map is basically a data type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a map of like string and then int than it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
     
     // time complexity is logN
     map<string, int> mpp; //syntax of mapp data type
@@ -127,9 +127,10 @@ void main1() {
 
     // how to print or iterate..
 
-    // a mapp is basically a pair(DATA TYPE) ..LIKE WE CAN ASSUME THAT.. it behaves like that in case of iteration and stuffs
+    // a map is basically a pair(DATA TYPE) ..LIKE WE CAN ASSUME THAT.. it behaves like that in case of iteration and stuffs
 
-    // PAIR..
+    // PAIR.. 
+    // remember pair is a data type not like its an array or something its like we can store value in it like int, double, float etc
     pair<int,int> pr;  // syntax for pair
     // it basically stores two data types in pair...
     pr.first = 1;  // assigning the first element of pair
@@ -148,15 +149,15 @@ void main1() {
      // UNORDERED MAP
 
     unordered_map<string, int> mpp;
-    // all the functions wokrs here
+    // all the functions works here
     // time complexity is O(1) in avg cases..O(n) for worst cases
-
+    // uses hashing so it'll not be in sorted order
     // PAIR CLASS
 
     pair<int,int> pr = {1, 2}; // this is the pair so like 1 is pr.first,, and 2 is pr.second
     // nested pair
     pair<pair<int,int>,int> pr = {{1, 2}, 3};
-    // here pr.first is also a pair... and pr,second is 3..
+    // here pr.first is also a pair... and pr.second is 3..
     // pr.first.first is 1 & pr.first.second is 2
 
     pair<pair<int,int>,pair<int,int>> pr = {{1,2}, {3,5}};
@@ -216,7 +217,7 @@ void main2() {
         }
         // the deletion of queue is same like stack.. will pop out the entire queue through a for loop
 
-        // remeber all the basic functions are of O(1).. for stack and queue but the deletion takes O(n) as it deletes all the elements..AND NO ITERATOR IN STACK AND QUEUE..
+        // remember all the basic functions are of O(1).. for stack and queue but the deletion takes O(n) as it deletes all the elements..AND NO ITERATOR IN STACK AND QUEUE..
 
         // PRIORITY_QUEUE..
         // why we need priority queue... basically in set it stores only unique elements and in unordered_set it stores unique element but in random order and the timecomplexity is also O(n) for the worst case..

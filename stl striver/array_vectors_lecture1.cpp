@@ -5,7 +5,7 @@ namespace raj {
     int getVal(){
         return val * 10;
     }
-}  // what is namespace ? its ike a collection of standard functions in c++..here we have defined our own namespace called raj.. for accessing that we need to use raj::val or raj::getVal()   .. ("::" scope resolution operator)
+}  // what is namespace ? its like a collection of standard functions in c++..here we have defined our own namespace called raj.. for accessing that we need to use raj::val or raj::getVal()   .. ("::" scope resolution operator)
 
 int main() {
     double val = 10;
@@ -38,7 +38,7 @@ struct node {
     // rj.gender = '1';
 
     node *rj = new node("striver", '1', 21);  // allocates the space at heap and creates a node through constructor  (need to be a pointer)
-    node rj = node("striver", '1', 21);  // allocates nrmally
+    node rj = node("striver", '1', 21);  // allocates normally
 
 //     return 0;
     
@@ -76,10 +76,10 @@ Arr.at(0); // will give you element at any index..same as vector...
 
 array<int, 5> arr ={1, 2, 3, 4, 5};
 
-for(auto it = arr.begin(); it!=arr.end(); it++){  // correct syntax (this is a nrml loop in which we have used "auto" data type)
+for(auto it = arr.begin(); it!=arr.end(); it++){  // correct syntax (this is a normal loop in which we have used "auto" data type)
     cout << *it << " ";
 }
-for(auto it = arr.rbegin(); it!=arr.rend(); it++){   // wll this work ??? 
+for(auto it = arr.rbegin(); it!=arr.rend(); it++){   // will this work ??? 
     cout << *it << " "; 
     }                            // yes that will work we dont need to do "it--"" cz... there rbegin is in use.. so that has a natural direction towards backward so "it++" will take that to backward not forward so that will print the entire array in reverse order
 
@@ -116,7 +116,7 @@ cout << vec.size();
 vec.push_back(1);
 vec.push_back(2);
 cout << vec.size(); // -> size 2
-vec.pop_back(); // will pop out last element 
+vec.pop_back(); // will pop out the last element 
 cout << vec.size(); // -> size 1
 
 vec.clear(); // -> erase all the element at once then vector becomes empty
@@ -126,7 +126,7 @@ vector<int> vec(4, 0);  // will create {0, 0, 0, 0}
 // after this we can also push_back and all that ..
 
 // now what we need to do if you want to copy the entire 
-vector<int> vec1(vec.begin(), vec.end());  //(here we can give the count of copying stuffs) this will copy that entire vector till vec.end()-1 [remember that it doesnt include the last element... its basically '['  , ')'..... '[' -> means including ')' -> means excluding  ]
+vector<int> vec1(vec.begin(), vec.end());  //(here we can give the count of copying stuff) this will copy that entire vector till vec.end()-1 [remember that it doesnt include the last element... its basically '['  , ')'..... '[' -> means including ')' -> means excluding  ]
 vector<int> vec1(vec);  // this copies the entire vec
 
 
@@ -144,7 +144,7 @@ vector<int> raj1(raj.begin(), raj.begin() + 3); // as that begin()+3 will be exc
 
 // 2D VECTOR 
 
-vector<vector<int>> vect;  // nrml way of assigning a 2d vector
+vector<vector<int>> vect;  // normal way of assigning a 2d vector
 
 // let .. 
 vector<int> raj1;
@@ -162,29 +162,29 @@ raj3.push_back(27);
 
 vect.push_back(raj1);
 vect.push_back(raj2);
-vect.push_back(raj3);  // we can create 2d vectors in this way pushing an entire vector inside a vector.. the most important thing is as its a vector so the columns and rows are dynamic .. as raj1 and raj2 has 2 elments but raj3 has 3 elements so here the columns are not of equal size and we can push_back or pop_back anytime... 
+vect.push_back(raj3);  // we can create 2d vectors in this way pushing an entire vector inside a vector.. the most important thing is as its a vector so the columns and rows are dynamic .. as raj1 and raj2 has 2 elements but raj3 has 3 elements so here the columns are not of equal size and we can push_back or pop_back anytime... 
 vect[2][2];  // is accessable but 
 vect[1][2];  // is not...as nothing is there..
 
 
 // now for iteration ..
-for(auto it: vect) {    // here at this line it takes on vect so it points to vector<int>... and goin forwrd it points aj1. raj2..raj3 ..etc
-    for(auto a: it) {  // here a points to the elements of the vector as 'it' here is a vector for each previous loop
+for(auto it: vect) {    // here at this line it takes on vect so it points to vector<int>... and going forward it points raj1. raj2..raj3 ..etc
+    for(auto a: it) {  // here "a" points to the elements of the vector as 'it' here is a vector for each previous loop
         cout << a << " "; // prints element
     }
 
     
 }
-// REMEMBER WE CA ACCESS EACH ROW OF THAT 2D VECTOR BY JUST GIVING ONE INDEX ..LIKE VECT[1]  -> WILL GIVE ME THE 2ND ROW (do push_back and all)
+// REMEMBER WE CAN ACCESS EACH ROW OF THAT 2D VECTOR BY JUST GIVING ONE INDEX ..LIKE VECT[1]  -> WILL GIVE ME THE 2ND ROW (do push_back and all)
 
 
 // doing a 10x20 2d vector and all 0
-vector<vector<int>> vec(10, vector<int> (20,0)); // 1st argument of vec is the number of clumns ...2nd one is the element thats gonna be inside it..so we are putting 10 vectors of 20 size all are 0.. 
+vector<vector<int>> vec(10, vector<int> (20,0)); // 1st argument of vec is the number of columns ...2nd one is the element thats gonna be inside it..so we are putting 10 vectors of 20 size all are 0.. 
 
 // array of vectors 
 vector<int> arr[10];
 
-// we have 10 vectors basically in a array.. contigious memory..
+// we have 10 vectors basically in an array.. contigious memory..
 
 // 3D VECTOR 
 // 10 x 20 x 30

@@ -16,7 +16,7 @@ int main() {
         st.insert(arr[i]); // insert function is basically like push_back for sets..
     }
     //now what set will do ??
-    //  this set will insert only unique elements and that too in ascending order like 1.. 2.. 5..  complexity for this would be logN (n is the number of elements in set)
+    //  this set will insert only unique elements and that too in ascending order like 1.. 2.. 5..  complexity for this would be logN (N is the number of elements in set)
     // to access the elements we cant use index number or at operator.. we need to use begin().. end().. iterators ..which will provide that pointer through will we can access
 
     // ERASE func
@@ -34,7 +34,7 @@ int main() {
     auto it = st1.find(10);  // this will make it = st1.end()
 
     st.emplace(8);  // same as insert but faster..
-    //    REMEMBER WE CAN HAVE AN ARRAY ...SET.. VECTOR OR ANYTHING OF ANY DATA TYPE LIKE int ..char..string and all... IF WE MAKE A CUSTOM DATA TYPE USING struct WE CAN ALSO HAVE A SET OF THAT DATA TYPE... WILL  HAVE THE SAME PROPERTIES BUT IT WILL WORK FOR ThAT PARTCULAR CUSTOM DATA TYPE...
+    //    REMEMBER WE CAN HAVE AN ARRAY ...SET.. VECTOR OR ANYTHING OF ANY DATA TYPE LIKE int ..char..string and all... IF WE MAKE A CUSTOM DATA TYPE USING struct WE CAN ALSO HAVE A SET OF THAT DATA TYPE... WILL  HAVE THE SAME PROPERTIES BUT IT WILL WORK FOR THAT PARTCULAR CUSTOM DATA TYPE...
 
     // ITERTAION
     for(auto it = st1.begin(); it!=st1.end(); it++) {
@@ -97,7 +97,7 @@ int main() {
 void main1() {
     
     // what is map ??
-    // map is basically a data type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a map of like string and then int than it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
+    // map is basically a data type which stores two different data types like a dictionary in coding language... it stores the data in ascending order of that data type.. like as we are creating a map of like string and int then it will store the order according to the alphabets (or the ASCII number )... and we can store only one key word as we cant store same string again and again as in this case strings are the key words...
     
     // time complexity is logN
     map<string, int> mpp; //syntax of mapp data type
@@ -178,7 +178,7 @@ void main2() {
 
         // STACK AND QUEUE
 
-        stack<int> st;  // lifo data structure (the internal impliment is on linkedin or array..)
+        stack<int> st;  // lifo data structure (the internal impliment is on linked list or array..)
         st.push(2);  // emplace is same 
         st.push(4);
         st.push(3);
@@ -222,7 +222,7 @@ void main2() {
         // PRIORITY_QUEUE..
         // why we need priority queue... basically in set it stores only unique elements and in unordered_set it stores unique element but in random order and the timecomplexity is also O(n) for the worst case..
         // so we use priority_queue ..it stores all the elements in sorted order(in ascending order)..
-        priority_queue<int> pr;
+        priority_queue<int> pr; // in case of max heap
         pr.push(6);
         pr.push(1);
         pr.push(5);
@@ -243,7 +243,7 @@ void main2() {
         pr1.push(-1);
         pr1.push(-5);
         pr1.push(-3);
-        pr1.push(-2); // ofc that will store in ascending order thn after that just use ..
+        pr1.push(-2); // ofc that will store in ascending order then after that just use ..
         cout << -1* (pr1.top()) ;  // pop doesnt return the digit .. it just deletes...
 
         // and we dont have iterators ..ofc
@@ -272,6 +272,7 @@ void main2() {
     // LIST..
     list<int> ls; // very very similar to dequeue
     // basically impliments doubly linked list at back...
+    // so we can insert at any side 
 
     // push_front();
     // push_back();
@@ -287,7 +288,7 @@ void main2() {
     ls.push_back(3);
     ls.push_back(5);
     ls.push_back(4);
-    ls.remove(2);   // will dlt 2 very fast..O(1)
+    ls.remove(2);   // will dlt 2 very fast..O(1) // as DLL
     
 
 

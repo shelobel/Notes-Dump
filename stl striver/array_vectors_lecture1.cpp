@@ -15,7 +15,7 @@ int main() {
     return 0;
 }
 
-// as we know that we can create a custom data type using struct.. but not only a data type but we can create a constructor same as C++ class constructor..
+// as we know that we can create a custom data type using struct.. but not only a data type but we can create a constructor same as C++ class constructor.. (constructor in C type )
 
 struct node {
     string name;
@@ -48,9 +48,9 @@ struct node {
 
 // ARRAY
 
-// we usually decleare like 
+// we usually declare like 
 // int arr[100]; .. its totally cool.. but
-array<int, 100> arr1;  // another way of doing tht
+array<int, 100> arr1;  // another way of doing that
 // if we declare like this in a function then its values are garbage.. but if we declare it globally that will consist values all 0;
 // and for 
 array<int, 3> arr2 = {1, 2};  // this means that 1st two elements are 1 and 2 others are 0;
@@ -61,7 +61,7 @@ array<int, 3> arr3 = {1}; // 1st one is 1 ...others are 0... thats why for {0} a
 void main3() {
     array<int, 5> Arr;
 Arr.fill(10);  //-> this will fill the entire array will 10 {or the number you want to allocate} 
-// fill(arr, arr +5, 10); // -> this will fill the entire array will 10 {or the number you want to allocate}
+// fill(arr, arr +5, 10); // -> this will fill the entire array will 10 {or the number you want to allocate} (this filling may or may not work for normal array declaration)
 Arr.at(0); // will give you element at any index..same as vector...
 
 
@@ -70,7 +70,7 @@ Arr.at(0); // will give you element at any index..same as vector...
 
 // FEW BASIC INTERATORS.. (works for all the data types)
     // begin(), end(), rbegin(), rend();
-// as we know that array is contigious allocation of memory... so the begin() fn gives us the address pf the first one.. it basically returns a pointer value which exactly points to the first element[index 0]... the rbegin() is reverse of begin it exactly points the end of the array (or any data type)... in case of end().. it points to the next element of the last element (remember its very very important.. it doesnt give u the address of the last element but the element after the last one[may be garbage in max cases]) .. and rend(is basically reverse of end() so it basically gives the element before the 1st element.. (like index -1)... )
+// as we know that array is contigious allocation of memory... so the begin() fn gives us the address of the first one.. it basically returns a pointer value which exactly points to the first element[index 0]... the rbegin() is reverse of begin it exactly points the end of the array (or any data type)... in case of end().. it points to the next element of the last element (remember its very very important.. it doesnt give u the address of the last element but the element after the last one[may be garbage in max cases]) .. and rend(is basically reverse of end() so it basically gives the element before the 1st element.. (like index -1)... )
 
 // implimentaion...(check the syntax)
 
@@ -84,10 +84,11 @@ for(auto it = arr.rbegin(); it!=arr.rend(); it++){   // will this work ???
     }                            // yes that will work we dont need to do "it--"" cz... there rbegin is in use.. so that has a natural direction towards backward so "it++" will take that to backward not forward so that will print the entire array in reverse order
 
 for(auto it = arr.end() - 1; it>=arr.begin(); it--){
-    cout << *it << " ";   // thats the case of a nrml direction reverse order..
+    cout << *it << " ";   // thats the case of a normal direction reverse order..
 }
-// for each loop... this will take each element of the array we dont need dereference it... here it is not a pointer
+// for each loop... this will take each element of the array we dont need to derefer it... 
 
+//here it is not a pointer
 for(auto it: arr){    // this is the C++ 14 type loop
     cout << it << " ";   // check a qsn ... how does it reaches the end condition..
 }
@@ -95,7 +96,7 @@ for(auto it: arr){    // this is the C++ 14 type loop
 // FEW MORE  (only works for stl kind of array declartion)
 
 //size..
-cout << arr.size();
+cout << arr.size(); // as the array declaration is in stl type so here .size() will work if it was of normal declaration then .length() would have worked
 // front element
 cout << arr.front();
 //back
@@ -121,7 +122,7 @@ cout << vec.size(); // -> size 1
 
 vec.clear(); // -> erase all the element at once then vector becomes empty
 
-vector<int> vec(4, 0);  // will create {0, 0, 0, 0}
+vector<int> vec(4, 0);  // will create {0, 0, 0, 0} // remeber this syntax
 
 // after this we can also push_back and all that ..
 
@@ -132,7 +133,7 @@ vector<int> vec1(vec);  // this copies the entire vec
 
 //now ..
 vector<int> raj;
-raj.push_back(4); // raj.emplace_back(1); // emplace_back and push_back is identical but emplace_back works faster than push_back..
+raj.push_back(4); // raj.emplace_back(1); // emplace_back and push_back ares identical but emplace_back works faster than push_back..
 
 raj.push_back(4);
 raj.push_back(2);
@@ -188,7 +189,7 @@ vector<int> arr[10];
 
 // 3D VECTOR 
 // 10 x 20 x 30
-vector<vector<vector<int>>> vec (10, vector<vector<int>> (20, vector<int> (30,0)));
+vector<vector<vector<int>>> vec (10, vector<vector<int>> (20, vector<int> (30,0))); // understand it well
 // just taking the 2nd argument as a 2d array...simple
 }
 

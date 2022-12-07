@@ -15,7 +15,7 @@ int main()
  
     // Copy three characters of s1 (starting
     // from position 1)
-    string r = s1.substr(1, 3);
+    string r = s1.substr(1, 3); // sub striings
  
     // prints the result
     cout << "String is: " << r;
@@ -38,7 +38,7 @@ int main()
         string str = "geeksforgeeks";
   
     cout << "Number of times 'e' appears : " 
-         << count(str.begin(), str.end(), 'e');
+         << count(str.begin(), str.end(), 'e'); //count in strings
   
 
  
@@ -61,7 +61,7 @@ int main()
     set<int>::iterator itr   // this method is important
         = s.begin(); // s.begin() returns a pointer to first
                      // element in the set
-    advance(itr, k - 1); // itr points to kth element in set
+    advance(itr, k - 1); // itr points to kth element in set // its basically using loop in a different method.. 
  
     cout << *itr << "\n";
  

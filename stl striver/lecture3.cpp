@@ -6,12 +6,12 @@ int main(){
     // bitset (it is of int data type)
     // int data type takes around 16bits.. 2bytes
     // char  takes 8 bits.. 1 byte
-    bitset<10> bt;  // it takes only 1 bit.. creates an array kind of structure and only stores 1 or 0.. so nrmally takes 1 bit
+    bitset<10> bt;  // it takes only 1 bit.. creates an array kind of structure and only stores 1 or 0.. so normally takes 1 bit
     // it cuts out the space complexity very well as an array of int or char will take 8bit or 16 bit for storing an element of an array.. so it takes very very less space compared to that..
     // this bitset generally use in segment tree to store value of node..
 
     bitset<5> bt;
-    cin >> bt;  // can store 10110
+    cin >> bt;  // can store 10110 // this kind of input works and for printing 'cout << bt' will work
 
     // functions...
 
@@ -56,15 +56,15 @@ void main2() {
     int arr[n];
     for(auto it: arr){
         cin >> it;
-
     }
+    // this process is for normal initialization of the array
     sort(arr, arr+n);  // this will sort the whole array
     // this sort takes a time of O(nlogn)
     // this sorting algo uses 3 kind of sorts in backend...if in an interview they ask to write its algo then its preferable to use merge sort
 
     vector<int> vec(5, 0);
     for(auto v: vec) {
-        cin >> v;
+        cin >> v; // nice way to take input
     }
     sort(vec.begin(), vec.end());  // will sort the whole vector // -> [)
 
@@ -94,7 +94,7 @@ void main2() {
 
     int el = *max_element(vec.begin(), vec.end());
     int el = *min_element(vec.begin(), vec.end());
-    // remember this max_element giver the iterator of maximum so we have to dereference it to get the value..
+    // remember this max_element gives the iterator of maximum so we have to dereference it to get the value..
 
     //sum of a particular range like from i to j
 
@@ -134,7 +134,7 @@ void main2() {
     cout << it - arr; // for array
     // cout << it - vec.begin(); for vector
 
-    // if the element is not there thn that will return the end() or the element after the end..
+    // if the element is not there then that will return the end() or the element after the end..
     auto it = find(vec.begin(), vec.end(), 12); // will give bck vec.end()
 
     // BINARY SEARCH...
@@ -158,7 +158,7 @@ void main2() {
 
 
     // UPPER BOUND FUNCTION
-    //this returns the iterator of the first element which is greater the the element... 
+    //this returns the iterator of the first element which is greater than the the element... 
     // arr[] -> {1, 5, 7, 7, 8, 10, 10, 10, 11, 11, 12};
     // x =7 // will point to 8
     // x =6 // will point to 7
@@ -195,7 +195,7 @@ void main2() {
     // we can also use this next_permutaion in integers.. 
     int arr[5] = {1, 3, 5, 6, 8};
     bool rea = next_permutation(arr,  arr+5); // we can use them in all the data types...
-    // the time complexity is very high very this 
+    // the time complexity is very very high for this 
     // for next_permutaion it is O(n)
     // and in general number of permuations are N! so .. the loop will continue for N! times.. so TC is very very high...
 
@@ -208,16 +208,18 @@ void main3() {
     // COMPARATOR
     // LECTURE 3 (1:55:00)
     
-    // comparator is basically a function which we pass as a argument in different linear algorithms or different functions which functions on linear data structure (not for stack .. queue .. tree and all..)
+    // comparator is basically a function which we pass as an argument in different linear algorithms or different functions which functions on linear data structure (not for stack .. queue .. tree and all..)
     // how to write a comparator ??
     // it works on linear data structure so like suppose we want to pass a comparator which will sort the array or string in descending order.. so for writing the comparater we need to write a bool function which will return true for right case.. and return false for wrong cases simple...
-    // so take a bool function and then imagine only two elements in an array of int or string or of any data type then we basically write code for sorting that in our own way ...tht function we will pass as a argument later
+    // so take a bool function and then imagine only two elements in an array of int or string or of any data type then we basically write code for sorting that in our own way ...that function we will pass as an argument later
 
-    // Q1 sort a array of pairs in such way that if the first term is smaller then it will be at first .. if its equal thn the pair with greater 2nd term will aquire the first place...
-    pair<int, int> arr[] = {{1, 5}, {5, 4}, {5, 9}};
+    // Q1 sort a array of pairs in such way that if the first term is smaller then it will be at first .. if its equal then the pair with greater 2nd term will aquire the first place...
+    pair<int, int> arr[] = {{1, 5}, {5, 4}, {5, 9}}; // here it is an array of pairs so we are writing a comparator using pairs
     // sort(arr, arr+3, comp);  // this will sort according to that..
     // sort(arr, arr+3, greater<pair<int,int>>); (check the syntax) // another process 
 }
+// study and remember this well.. v v important I(also check if it requires to pass the arguments by reference or not) [not required ig..  ]
+// we need to write a comaparator using those elements which are constructing the data structure like we wan to write for an array then we have to write using 2 integers.. remember only 2 elements we need to consider
 bool comp(pair<int, int> el1, pair<int, int> el2) { // we are assuming only 2 elements .. here el1 and el2... if el1's first element is small so the order is right so we returned true...
         if(el1.first < el2.second) { // that case 
             return true;
@@ -228,8 +230,9 @@ bool comp(pair<int, int> el1, pair<int, int> el2) { // we are assuming only 2 el
 
             }
         }
-        return false; // else the order is not right so returned true..
+        return false; // else the order is not right so returned false..
     }
 
 
     // C++ has a default comparator for called greater<int> or. greater<pair<int,int>>.. basically "greater<data_type>" 
+    // also string is not there in strivers stl 

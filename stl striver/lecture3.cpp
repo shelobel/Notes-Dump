@@ -220,7 +220,8 @@ void main3() {
 }
 // study and remember this well.. v v important I(also check if it requires to pass the arguments by reference or not) [not required ig..  ]
 // we need to write a comaparator using those elements which are constructing the data structure like we want to write for an array then we have to write using 2 integers.. remember only 2 elements we need to consider
-static bool comp(pair<int, int> el1, pair<int, int> el2) { // we are assuming only 2 elements .. here el1 and el2... if el1's first element is small so the order is right so we returned true...
+// for comparators we need to declare it as static if we are writing it inside any class, if we are writiing it outside of any class then we can initialize it normally
+bool comp(pair<int, int> el1, pair<int, int> el2) { // we are assuming only 2 elements .. here el1 and el2... if el1's first element is small so the order is right so we returned true...
         if(el1.first < el2.second) { // that case 
             return true;  // maybe in c++ comparator cant be non staic ig 
         }

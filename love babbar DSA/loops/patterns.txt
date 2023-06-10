@@ -1,4 +1,4 @@
-in pattern problems we hv to think and observe properly .. we need to check he number of rows and no. of cloumns for each row first..
+in pattern problems we have to think and observe properly .. we need to check he number of rows and no. of cloumns for each row first..
 
 * * * *
 * * * *

@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-// so what is pure virtual function and abstrat classes ??
+// so what is pure virtual function and abstract classes ??
 // as we are inheriting from car class so we hv defined the imcar() func inside that class if we make the value of imcar() func 0 then that would be a purely virtual function.. and that car class would be an abstract class( an abstract class must hv a one purley virtual function)
 
 class car { // this class is now an abstract class 

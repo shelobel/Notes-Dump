@@ -8,6 +8,9 @@ after installing git :
 $ pwd  // presently working directory
 $ cd   // change directory
 $ ls  // list content
+$ dir // for windows
+$ clear // clearing the window for linux
+$ cls // for clearing the window for windows
 ----------------------------------------------
 // now storing email and name 
 $ git config --global user.name "SD"
@@ -32,24 +35,24 @@ $ touch .gitignore  // creates a file name .gitignore which will ingore some fil
 $ git diff   // it basically compares working directory and staging area and shows the changes (also git diff "file name" works for a particular file)
 $ git diff --staged  // compares last commit with staging area
 $ git commit -a -m "message"  // for directly committing skipping the staging part (this will not add untracked files {unadded files})
-$ git rm third.txt  // removing a file (third.txt) this process also makes the changes staged (if u do it manually thn we hv to addthis to be at staged )
+$ git rm third.txt  // removing a file (third.txt) this process also makes the changes staged (if u do it manually thn we hv to add this to be at staged )
 $ git mv third.txt third_renamed.txt  // this will rename the file name to third_renamed.txt and will also make that staged
 $ git rm --cached db.accdb  // this will make db.accdb untracked so thn we can store it into .gitignore to be ignored 
 ---------------------------------------------------------------------------------------------------------------
-$ git log -p   // will show you all the lines got removed and added in last  all commits (full info)
+$ git log -p   // will show you all the lines got removed and added in last all commits (full info)
 $ git log -p -2  // then it will show last 2 commits
 $ git log --stat  // will give you commits info as a summary
 $ git log --pretty=oneline   // will give infos in one line
 $ git log --pretty=short   //
 $ git log --pretty=full    // 
 $ git log --since=2.days/months/weeks/years  // will show log of that particular time period
-$ git log --pretty=format"%h -- %ae"  // will give u info in that particularformat  (check git dcumentation website (git scm) for format of log)
+$ git log --pretty=format"%h -- %ae"  // will give u info in that particular format (check git documentation website (git scm) for format of log)
 -------------------------------------------------------------------------------------------------------------------
-$ git commit --amend  // this command will open an ide ther u can add ur changes to the previous commit made by other person or by urself (the ide will be pretty complex you need to press "I" to start writing basically insert thn pres "Esc" to back thn press ":" and "wq" thn "enter" to add those changes to that commit ) remember u need to add those changed files first (make them at staged position to reflect the changes)
+$ git commit --amend  // this command will open an ide their u can add ur changes to the previous commit made by other person or by urself (the ide will be pretty complex you need to press "I" to start writing basically insert thn press "Esc" to back thn press ":" and "wq" thn "enter" to add those changes to that commit ) remember u need to add those changed files first (make them at staged position to reflect the changes)
 $ git restore --staged first_rename.txt  // this will unstaged an added file (already being tracked) 
 $ git checkout -- first_renamed.txt   // if u have accidently changed the firsttxt file this will match the file to its initial commit (will restore the previous codes) [this will apply if the file is in unstaged stage only]
 $ git checkout -f   // this will take you to ur previous commit will make all the modifications null 
-$ git remote  // this will show you ur origin (remeber reote means the git repo that u hv on a hosting server most probably GitHub ) // after adding origin that will show origin
+$ git remote  // this will show you ur origin (remember remote means the git repo that u hv on a hosting server most probably GitHub ) // after adding origin that will show origin
 $ git remote -v   /// will give you origin's link to push and fetch(pull)
 $ git restore first.txt   // this will discard all the new changes in that file
 ------------------------------------------------------------------------------------------------------------------
@@ -81,7 +84,7 @@ $ git config --global alias.last 'log -p -1'  // making alias of log -p -1 as la
 $ git checkout -b untitled   // this will create a new branch named untitled and will take u to branch untitled
 $ git checkout branchname   // takes you to that branch 
 $ git branch  // will show you your branch 
-$ git merge untitled  // this will merge the branch untitled with the master branch remember that we have to write this code in master branch if there is some base conflict yu have to solve this thn add the modified file thn commit it to merge (give the message at committing through -m .. but if a ide opens use ":wq" ) // after merging $ git push origin master to publish changes to remote
+$ git merge untitled  // this will merge the branch untitled with the master branch remember that we have to write this code in master branch if there is some base conflict you have to solve this thn add the modified file thn commit it to merge (give the message at committing through -m .. but if a ide opens use ":wq" ) // after merging $ git push origin master to publish changes to remote
 $ git branch -v   // will give u branches ..commit hashcode nad commit messages
 $ git branch --merged  // will show u merged branches
 $ git branch --no-merged   // not merged branches
@@ -91,12 +94,14 @@ $ git push origin untitled   / will push the untitled branch to remote  (github)
 $ git push origin -d origin untitled   // this will delete the untitled branch from remote
 ---------------------------------------------------------------------------------------------------------------
 #IMPORTANT THINGS 
-when ever you push some code to particular branch in remote thn make sure u r in that  right branch (master -> master  , untitled -> untitled)
+when ever you push some code to particular branch in remote thn make sure u r in that right branch (master -> master  , untitled -> untitled)
 make sure u push the code when the tree is clear (git status)
 _________________________________________________________________________________________________________________
 -----------------------------------------------------------------------------------------------------------------
 
 #PERSONAL EXPERIENCE [remember one thing when a branch gets merged into the website it gets deleted as it got merged]
+// for pulling you need to fork the repo and make one repo of your own and you need to pull from that and do the necessary changes and push it to your own repo and then you need to compare and raise a pull request to the main repo from where you have forked
+
 $ git pull origin master/untitled   // for pulling the changes from github to your local(after pulling you hv to add . and then commit for that change)
 $ git push origin master/untitled    // for pushing the changes permanently from ur local to github
 $ git fetch   // check this out for pulling changes
@@ -106,7 +111,7 @@ $ python manage.py makemigrations "app name" // like "EQuest"
 $ python manage.py migrate   // it will a new database(db.sqlite)
 $ python manage.py migrate --run-syncdb   // 
 $ winpty python manage.py createsuperuser  // to create superuser in git bash
-$ pip install pillow   // requiredment installation
+$ pip install pillow   // requirement installation
 $ code .  // for opening VScode
 $ cd ..  // for going back (maybe)
 // FOR MERGING ANY PR TO YOUR ANY BRANCH..
@@ -115,5 +120,7 @@ $ git pull
 // FOR ADDING THE BACKEND CHANGES U HAVE TO DO MAKEMIGRATIONS AND MIGRATE
 $ python manage.py makemigrations
 $ python manage.py migrate
- 
 
+
+// follow the below article for pushing large data into git repo
+// https://medium.com/linkit-intecs/how-to-upload-large-files-to-github-repository-2b1e03723d2

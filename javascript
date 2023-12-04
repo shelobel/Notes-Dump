@@ -235,7 +235,23 @@ var a = 10;
 error
 //So in block " var a = 10;" influences the global value itself because var is hoisted in global space, hence  console.log(a); >> 10 and outside of the block 'Variable in Global environment' influences value of a hence console.log(a); >> 10
 
-//Illegal shadowing:
+//SHADOWING: basically when a variable of same name is declared inside a scope, it is now relevant within the scope as the locally declared variable. this is called shadowing as it shadows the original outer scope variable.
+
+
+let a = 20;
+{
+  let a = 10;
+  console.log(a);
+}
+console.log(a);
+//OP:
+10
+20
+
+//a shadows global a inside the scope.
+//(but if it was var, there would be shadowing however, after coming out of scope, the variable will not regain global value as it has been modified by local var cuz they share same memory space.. thus var is not block scoped
+
+//ILLEGAL shadowing:
 
 let a = 200;
 {
@@ -250,7 +266,7 @@ var a = 20;
 
 // this is acceptable as let is block scoped and a is an independent variable allocated in a different space (block space) unlike var which is allocated in global space.
 
-
+//CLOSURE:
 
 
 

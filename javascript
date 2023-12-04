@@ -314,6 +314,7 @@ function x(){
  function y(){
     console.log(a);
   }
+ a = 100;
  return y;
 }
 var z = x();
@@ -321,6 +322,26 @@ z();
 
 //OP:
 100
+// calling z means calling y (as z = ret val of x = y). now y does not store the "value" of a but the "reference" of a. 
+// hence when we modify a as 100, we have affected the reference in the lexical env. thus we get op as 100
+
+//Q: what will be op?
+
+function z() {
+ var b = 900;
+ function x(){
+    var a = 7;
+    function y(){
+       console.log(a,b); // when we are here during execution, fn y stores closure of x which inturn stores closure of z. thus we have both references a and b in hand.
+     }
+    y();
+   }
+ x();
+}
+z();
+
+//OP: 7 900
+
 
 
 

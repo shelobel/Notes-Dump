@@ -267,7 +267,60 @@ var a = 20;
 // this is acceptable as let is block scoped and a is an independent variable allocated in a different space (block space) unlike var which is allocated in global space.
 
 //CLOSURE:
+//closure :Function bundled with its lexical environment is known as a closure. 
+// Whenever function is returned, even if its vanished in execution context but still it remembers the reference it was pointing to. 
+// Its not just that function alone it returns but the entire closure and that's where it becomes interesting !! 
 
+// in js functions can be assigned to variables, fn can be passed as parameters, fn can be returned from other fn as well.
+
+function x(){
+ var a = 7;
+ function y(){
+    console.log(a);
+  }
+ return y;
+}
+var z = x(); // after this line executes, x will be gone (x's lec will be deleted) and variable z will be assigned return val of x() (basically z stores closure of return val of x i.e function "y" and it still remembers the reference it was pointing to ) in a way z is also a function 
+console.log(z); // here the content of z is printed. what is z? simply the returned value of x() i.e. function y. so output will be the code of function y
+z(); //(interesting) we call z and it holds function y which has a reference to 'a' thus z stores the closure of y 
+
+//OP:
+f y(){
+  console.log(a);
+}
+7 //because z contains closure of y which means memory and the lexical env of y hence a is preserved
+//also
+function x(){
+ var a = 7;
+ function y(){
+    console.log(a);
+  }
+ return y;
+}
+
+//same as
+
+function x(){
+ var a = 7;
+ return function y(){
+    console.log(a);
+  }
+}
+
+//Q: what will be op?
+
+function x(){
+ var a = 7;
+ function y(){
+    console.log(a);
+  }
+ return y;
+}
+var z = x();
+z();
+
+//OP:
+100
 
 
 

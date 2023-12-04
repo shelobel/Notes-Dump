@@ -342,6 +342,101 @@ z();
 
 //OP: 7 900
 
+//SET-TIMEOUT
+//1. setTimeout stores the function in a different place and attached a timer to it, when the timer is finished it rejoins the call stack and executed. (while executing in diff place, it obv has the closure of all variables which share scope with it)
+//2. Without closure the var reference gives the latest value as it does not retain the original value but rather has the reference so any update in value after timeout will be shown.
+//3. If we use let/const because they have block scope, every time a new copy of variable is attached, thus this can be done without closure.
+
+function x(){
+ var i = 1;
+    setTimeout(function() {
+      console.log(i);
+     }, 3000); // means timeout of 3 seconds or 3000 mili sec
+    console.log("hello");
+}
+x();
+
+//OP:
+hello
+1 //after 3 sec
+//note: see that hello didnt print after 3 sec as it might appear from code. this is cuz settimeout executes somewhere else, storing the closure in this case the reference to i,. the rest of code executes normally, and when settimeout is done executing, it joins back in the call stack. 
+// thus hello prints as usual but 1 is printed after a timeout of 3 seconds.
+
+// explanation of pt 2 with situation: say u have to print numbers 1 2 3 4 5 one after other in 1 sec gap
+
+function x(){
+ for(var i = 1;i<=5;i++) {
+     setTimeout(function() {
+       console.log(i);
+      }, i*1000); 
+   }
+ console.log("hello");
+}
+x();
+
+//OP:
+hello
+6
+6
+6
+6
+6
+//after 1 sec gap each
+
+//.....wHATTTTTT 
+//hehe this is cuz setTimeout has the closure of its lexical env as in it still references  to 'i'. now loop will run in usual pace and i will quickly increment to 6. but in these seperate timeouts of 1000,2000,3000,4000,5000 ms we have i referencing to same memory location. thus they all will now have 6.
+//upon printing also they all print 6 as and when their timer exhausts.
+
+//fixing the problem by "let" as let as block scope. thus with each loop iteration, each function has a new copy of i which has independent space in their scope.
+
+function x(){
+ for(let i = 1;i<=5;i++) {
+     setTimeout(function() {
+       console.log(i);
+      }, i*1000); 
+   }
+ console.log("hello");
+}
+x();
+
+//OP:
+hello
+1
+2
+3
+4
+5
+
+//what if u cant use let?
+
+//u can use a function embedded inside our loop and pass i as a parameter. this will always create new copy of i 
+
+function x(){
+ for(var i = 1;i<=5;i++) {
+   function close(x) {
+      setTimeout(function() {
+        console.log(x);
+       }, x*1000); 
+    }
+   close(i);
+  }
+
+ console.log("hello");
+}
+x();
+
+//OP:
+hello
+1
+2
+3
+4
+5
+
+
+
+
+
 
 
 

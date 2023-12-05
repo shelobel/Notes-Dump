@@ -434,8 +434,37 @@ hello
 4
 5
 
+//code writing in js : random snippet
 
+function Counter()
+{
+	var count = 0;
 
+	this.incrementCounter = function(){
+	  count++;
+	  console.log(count);
+	}
+	
+	this.decrementCounter = function(){
+	  count--;
+	  console.log(count);
+	}
+}
+
+var counter1 = new Counter();
+
+counter1.incrementCounter();
+
+//*data hiding of variables like count in this case.. decrementCOunter and incrementCOunter are function constructors.. kinda see the OOD pattern here.
+
+//Disadvantage of closure:
+//overconsumption of memory, and sometimes variables not grabage collected after program is over and if not handles properly leads to memory leaks
+//garbage collection: program in js engine which frees up the unutilised memory
+//1. An inner function can be directly called using two parenthesis ()().
+//2. Even parameters can be passed this way (Remember that the function needs to be returned to do this)
+//3. Closures can also be used for data hiding and encapsulation. So other code cannot access this value.
+//4. Unused variables are automatically deleted in High Level Programming language by garbage collector. Closures allocate a lot of memory which cannot be deleted so this acts as a disadvantage.
+//5. Some browsers now have smart garbage collectors that automatically deletes variables that are not used outside closures.
 
 
 

@@ -268,6 +268,7 @@ var a = 20;
 
 //CLOSURE:
 //closure :Function bundled with its lexical environment is known as a closure. 
+// a function remembers its outer environment as it stores a reference of its outer env even if it is executed elsewhere. outer env includes variables declared outside the function be it let, var ,const anyting, or a parameter passed in an outer nested function..
 // Whenever function is returned, even if its vanished in execution context but still it remembers the reference it was pointing to. 
 // Its not just that function alone it returns but the entire closure and that's where it becomes interesting !! 
 

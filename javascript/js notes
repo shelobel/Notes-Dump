@@ -617,7 +617,241 @@ attachEventListener();
 
 // 4. Event listeners consume a lot of memory which can potentially slow down the website therefore it is good practice to remove if it is not used.
 
+//EVENT LOOOOOOOOP
+
+// 1. Browser has superpowers that are lent to JS engine to execute some tasks, these superpowers include "web API's" such as console, location, DOM API, setTimeout, fetch, local storage.
+// 2. Callback functions and event handers are first stored in Web API environment and then transferred to callback queue.
+
+//eg:
+
+console.log("start");
+
+setTimeout(function cb() {
+  console.log("Callback");
+},5000);
+
+console.log("End");
+
+//first gec pushed to call stack start is printed..
+//settimeout executes, call back function cb is stored in a Web API environment for the time being and timer starts running.
+//meantime, end is printed.. gec is over so gec is pushed out call stack is empty
+// now timer still running and hits 0 but now what? we need call back function to go to call stack.. we cant do it just like that
+
+//concept of event loop and callback queue arrives.
+
+//cb function is pushed to callback queue from the webapi env. 
+//EVENT loop is like a gatekeeper, who keeps checking whether the callback queue is empty or not.. and if not, it pushes the func to call stack. then the call stack quickly executes cb function.. CAllback is printed.. cb is popped out of the stack. call back que empty. all over
+
+//eg with eventlistener:
+
+console.log("Start");
+
+document.getElementById("btn").addEventListener("click", function cb(){
+  console.log("callback");
+}); //basically whenever we see addEventListener, it registers thr callback function(here cb) in the webAPI's environment and attaches a "click" evevnt to it
+
+console.log("end");
+
+//the callback function with the event is in the webapi env and is forever waiting for event to occur and then the func will be pushed to cb queue and then the event loop will push it to the stack for execution. thus eventlisteners are very heavy.
+
+//There is one more queue called microstask queue. Event loop gives priority to microtask queue as compared to callback queue or task q.
+
+//eg: 
+
+console.log("Start");
+
+setTimeout(function cb() {
+  console.log("Callback settimeout");
+},5000);
+
+fetch("https://api.netflix.com").then(function cbF() {
+  console.log("CB Netflix");
+}); //will study later.. but fetch function returns a promise. fetch function goes and fetches the api call and returns the response after which 'then' is excecuted in this line
+
+console.log("end");
+
+// 3. Promises and mutation observer are stored in API environment and then transferred to microtask queue. Thus in above case cbF function is a promise and is pushed to microtask queue.
+ 
+//but first the gec executes and only after that the cb functions from queues are transferred to the call stack by the event loop. haha if the settimeout is set to 0ms it might still take more time 5-10ms cuz it waits for call stack to be empty and only then can it be pushed for execution.
+
+// 4. Event loop continuously observes call stack and when it is empty it transfers task to call stack.
+//this means asynchronous functions and methods have to wait for the call stack to be empty and only then can they be executed.
+
+// 5. Micro task is given priority over callback tasks.
+
+// 6. imp ppoint. all this webAPI env and queues, these come into picture only for asynchronous methods.(those which execute along side main call stack, elsewhere)
+//  the synchronous callback functions like what we pass inside map, filter, and reduce aren't registered in the Web API environment. It's just those async callback functions that go through all this.
+ 
+// 7. Too many micro tasks generated can cause Starvation (not giving time to callback tasks to execute).
+
+//JS ENGINE:
+
+// 1. JS runtime environment: contains all elements required to run JS.
+
+ // JS ENGINE contains JS engine, set of API's, callback queue, microtask queue, event loop.
+
+// JS engine is a piece of code.
+//js engine takes code as input then executes following process:
+// Process includes Parsing ---> Compilation -----> Execution.
+
+// Parsing breaks code into tokens and converts it into AST(Abstract Syntax Tree). after that compilation.
+
+// js is interpreter lang or compiler lang?
+// interpreter executes line by line(fast).. compiler first optimises before execution and then executed.
+// what does js use?
+
+//js can behave as both depending on engine..
+// Modern JS engine follows JIT compilation, it interprets while it optimises code as much as it can. thus best of both worlds.
+
+//after this execution is done.. various elemnts for that are used
+
+//alongside js engine also has call stack, memory heap: space where all the var and funcitons are assigned memory, garbage collector: uses mark n sweep algorithm, optimizations:inlining,copy elision, inline caching
+
+//ignition interpreter and turbofan compiler make code run v fast
+//v8 js engg(googles js engine): can research about it
+
+//SET_TIMEOUT_TRUST_ISSUES:
+
+//if main code takes more time than timer expiry.. settimeout can't help at all, the call back function has to wait for call stack to be empty, inturn hampering performance of many async operations.
+//thus its adviced to try to never block the main thread. 
+
+//even if the settimeout has 0ms timer, then also it is executed in the end after the main thread is complete exceuting and call stack is emptied. why? well settimeout is asynchronous method thus it comes with its pros n cons.
+//usecase: can defer a particular method to execute in the end of the main thread execution. thus it will execute in the end of the whole call stack is executed.
+
+//HIGHER-ORDER FUNCTIONS
+
+//A function which takes another func as an argument or returns a func from it is known as higher order function
+//eg:
+
+function x(){
+  console.log("Namaste");
+}
+
+function y(x){
+  x();
+}
+
+//function y is a higher order func as it takes x func as argument. x is the callback function. this is only possible cuz functions are first class citizens in js.
+
+//eg: simple area calculation of circles and circumference
+
+const radius = [3,1,2,4];
+
+const calculateArea = function(radius) {
+  const output = [];
+  for(let i = 0;i<radius.length;i++){
+    output.push(Math.PI*radius[i]*radius[i]);
+  }
+  return output;
+};
+
+console.log(calculateArea(radius));
+
+const calculateCircumference = function (radius) {
+  const output = [];
+  for(let i = 0;i<radius.length;i++){
+    output.push(2*Math.PI*radius[i]);
+  }
+  return output;
+};
+
+console.log(calculateCircumference(radius));
+
+//this is repeatitive code a lot. thus we should do somethimg else. optimise our format.
+//better to use a generic function, with the logic part extracted out of it
+
+const area = function(radius) {
+  return Math.PI*radius*radius;
+}
+
+const circumference = function(radius){
+  return 2*Math.PI*radius;
+}
+const diameter = function(radius){
+  return 2*radius;
+}
+
+const calculate = function(arr, logic) {
+  const output = [];
+  for(let i =0;i<arr.length;i++){
+    output.push(logic(arr[i]))
+  }
+  return output;
+}
+
+console.log(calculate(radius,area));
+console.log(calculate(radius,circumference));
+
+//it will give same output.
+//this is functional programming..breaking down problem into small problems whcih are independent.
+
+//alsooo
+console.log(radius.map(area));
+//same as
+console.log(calculate(radius,area));
+
+//what we made is our implementation of map. will learn further. calculate function is nothing but map.. takes generic array, iterates over it and applies logic to each.
+
+//fun fact: to call that calculate function like this "radius.calculate", we need to give it a power so that it appears with all the arrays in our code. 
+//thus we use somethinf called array.prototype
+
+Array.prototype.calculate = function(logic) { //this is like a polyfill..(search)
+  const output = [];
+  for(let i =0;i<this.length;i++){
+    output.push(logic(this[i]))
+  }
+  return output;
+}
+
+console.log(radius.calculate(area));
+
+//this in the calculate function points to the array which is invoking it, we have radius in this case.(relate to OOPS it makes complete sense. this ptr.)
+
+//MAP,FILTER AND REDUCE
+
+//MAP: used for transformations to an array 
+//eg: to double all elements of an array 
+
+const arr = [5,1,3,2,6];
+//Double - [10,2,6,4,12];
+
+function double(x){
+  return x*2;
+}
+
+const output = arr.map(double);
+
+console.log(output);
+//eg: for decimal to binary
+
+function binary(x){
+  return x.toString(2); //this converts a number to the string of given base (here 2 means binary)
+}
+
+const output = arr.map(binary);
+//Can also be written as::
+
+const output = arr.map(function binary(x){
+  return x.toString(2); 
+});
+
+//or arrow function:
+
+const output = arr.map((x) =>  x.toString(2)); //when single line func we can remove braces
 
 
 
+// 1. map method is used when we want transformation of whole array.
+// 2. filter is used when we want to filter the arrar to obtain required value.
+// 3. reduce is used when we want to reduce the array to single value eg (max, min, avg, sum, difference etc).
+// 4. reduce passes two arguments one function(which includes accumulator and initial value as argument itself) and another initial value of accumulator.
+// 5. Homework:
 
+const output = user.reduce(function(acc, curr){
+    if (curr.age < 30){
+        acc.push(curr.firstName);
+    }
+    return acc;
+}, [ ])
+
+console.log(output);

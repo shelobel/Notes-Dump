@@ -839,19 +839,97 @@ const output = arr.map(function binary(x){
 
 const output = arr.map((x) =>  x.toString(2)); //when single line func we can remove braces
 
+//Filter: used when we want to filter the array to obtain those values which follow said conditions.
 
+function isOdd(x){
+  return x%2;
+}
 
+const output = arr.filter(isOdd);
+console.log(outptut);
+
+//Reduce: find or compute one value after iterating through all values of array.
+//eg: sum :
+
+const output = arr.reduce(function(acc,curr){
+  acc = acc + curr;
+  return acc;
+},0); 
+
+//2 arguments of reduce function are (a,b), 'a' is function and 'b' is the initial value of accumulator inside the function
+//    2 args of function 'a' are (x,y), x is accumulator which is corresponding to the value we are computing or value which is a part of our final output, and y is current which iscorresponding to each element of the array as we iterate through it (arr[i])
+
+//eg 2: find max value in array
+
+const output = arr.reduce(function(acc,curr){
+  acc = (acc>curr)?acc:curr
+  return acc;
+},0); 
+
+//Real life example of smth:
+
+///given:
+
+const users = [
+  {firstName: "akshay", lastName: "saini", age:26},
+  {firstName: "bono", lastName: "lata", age:26},
+  {firstName: "shaily", lastName: "shekhar", age:20},
+  {firstName: "bb", lastName: "kabb", age:22},
+];
+
+//ques: give list of full names
+//what will u use?
+
+//A. map to be used.
+
+const output = users.map(x => x.firstName + " " + x.lastName);
+
+//ques: how many ppl have same age should be printed? print all ages and their frequencies
+
+//A. reduce to be used
+
+const output = users.reduce(function(acc,curr){
+  if(acc[curr.age]){
+    acc[curr.age]++;
+  }
+  else{
+    acc[curr.age] = 1;
+  }
+
+  return acc;
+},{});
+//acc used as dictionary
+
+//OP:
+{20:1, 22:1, 26:2}
+
+//Q: print only those entries who have age less than 25
+//A: filter
+
+const output = users.filter(x => x.age<25);
+
+//Q: find first name of all ppl aged less than 25
+//A: map over previous op
+const output = users.filter(x => x.age<25).map(y=>y.firstName);
+
+//how to do it using reduce??
+
+const output = user.reduce(function(acc, curr){
+  if (curr.age < 30){
+      acc.push(curr.firstName);
+  }
+  return acc;
+}, [ ])
+//acc used as array
+
+console.log(output);
+
+//Summary
 // 1. map method is used when we want transformation of whole array.
 // 2. filter is used when we want to filter the arrar to obtain required value.
 // 3. reduce is used when we want to reduce the array to single value eg (max, min, avg, sum, difference etc).
 // 4. reduce passes two arguments one function(which includes accumulator and initial value as argument itself) and another initial value of accumulator.
-// 5. Homework:
 
-const output = user.reduce(function(acc, curr){
-    if (curr.age < 30){
-        acc.push(curr.firstName);
-    }
-    return acc;
-}, [ ])
 
-console.log(output);
+
+

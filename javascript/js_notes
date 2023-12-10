@@ -1265,8 +1265,239 @@ async function handlePromise() {
 
 //imp: await can only be used inside an async function
 
+//ADVANCED EXECUTIONS USING ASYNC AWIT:
+
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => {resolve("Promise Resolved Value!");
+}, 10000);
+}); //now this promise will only be resolved after 10 seconds
+
+function getData() {
+  //js engine will not wait for thispromise to be resolved
+  p.then(res => console.log(res)); 
+  console.log("NAmaste");
+}
+
+getData();
+
+//OP:
+Namaste
+Promise Resolved Value! // after 10 sec
+//problem? : 
+//what if we want promise to be resolved and only then normal js to execute
+
+//using async func instead of getData funct
+
+async function handlePromise() {
+  //js engine will wait for thispromise to be resolved (not really but looks like)
+  const val = await p; // program waits here.. the rest of code also waits for this async operation to happen
+  console.log("Namaste");
+  console.log(val);
+}
+
+handlePromise();
+
+//OP:
+//blank screen for 10 sec
+Namaste
+Promise Resolved Value!
+
+//TRICKY EXAMPLE
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {resolve("Promise Resolved Value!");
+}, 5000);
+});
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {resolve("Promise Resolved Value!");
+}, 10000);
+});
+
+async function handlePromise() {
+  console.log("hello wrold!"); //1. first thing this line executes instantly as code runs
+   const val = await p1; // 2. await, first check whether p1 is already resolved or not? unresolvd. thus the js engine will "suspend the function handlepromise" handlepromise is removed from call stack (rest of the code apart from this func will execute normally) but here there is nth else apart from this func, thus blank screen as we wait
+   console.log("Namaste"); //3. after p1 is resolved, handlepromise is pushed back to the call stack and the rest of func code execute. console logs this text after 5 seconds.
+   console.log(val); //4. logs along with Namaste 
+
+   const val2 = await p2; //5. check whether p2 already resolved or not? unresolved. thus suspend function, wait for p2 to resolve (10 sec) push back in call stack and cont execution
+   console.log("Namaste 2"); //6. logs after (10sec that took to resolve) func back in call stack (main thread).
+   console.log(val2);//7. logs along with above line namaste 2
+
+}
+
+handlePromise();
+
+//OP:
+hello world!
+//blank screen 5sec
+Namaste
+Promise Resolved Value!
+//blank screen 10 sec
+Namaste 2
+Promise Resolved Value!
+
+//suppose in val2 we put await p1, output would be
+
+hello world!
+//blank screen 5sec
+Namaste
+Promise Resolved Value!
+Namaste 2
+Promise Resolved Value!
+//why?  first we check wheteher p2 already resolved or not, this one was already resolved so didnt suspend again. SOCOOL
+
+//REAL example of async await:
+
+//run this using dummy html and js and notice the json data on your console!
+
+const API_URL = "https://api.github.com/users/shelobel";
+
+async function handlePromise() {
+
+  const data = await fetch(API_URL);
+
+  // how fetch works
+  //1. fetch() function is a promise, which gives a response object
+  //2. this response body is a readable stream, to convert it to json u need to do response.json
+  //3. this response.json() is again a promise which will give us a jsonValue (which can be further logged) 
+  // fetch() => Response.json() => jsonValue (not code but flow)
+  // fetch().then(res => res.json()).then(res => consolelog())  (example code)
+  
+  const jsonValue = await data.json();
+
+  console.log(jsonValue);
+
+}
+
+handlePromise();
+
+//ERROR HANDLING FOR ABOVE EXAMPLE
+
+async function handlePromise() {
+
+  try{ //if api is valid then this is executed
+    const data = await fetch(API_URL);
+    const jsonValue = await data.json();
+    console.log(jsonValue);
+
+  } //if api is invalid then this is executed (customised error handling here)
+  catch(err){
+    console.log(err);
+  }
+  
+}
+
+handlePromise();
+
+//another way of error handling?
+
+handlePromise().catch((err) => console.log(err)); //we know handlepromise is an async func means async func always returns a promise, so we have a .catch on our promise
+
+//WHAT IS BETTER? ASYNC AWAIT OR THEN,CATCH?
+
+//A. async await is just syntax play, behind the scene same then catch takes place.. async await is better for documentaion and clarity
+// try using async await 
+
+////////////////
+//PROMISE APIs
+////////////////
+
+// [p1,p2,p3]
+//  |  |  |
+//  3s 1s 2s
+
+//1. Prommise.all()
+
+// takes array of promises as input. tbh it is called iterable.
+Promise.all([p1,p2,p3]) //takes 3 parallel api calls and gets result.
+
+//suppose p1 takes 3 sec, p2 takes 1 sec, p3 takes 2s (assume all are successfull)
+
+//promise.all(p1,p2,p3) will return array of results of all these promises [val1,val2,val3] 
+
+//time? all promise will return taking their individual times, but final array of values will wait for ALL OF THEM TO FINISH
+
+//thus array [val1,val2,val3] generates after 3 sec. 
 
 
+//what if any of these promises get rejected?
+
+//consider scenario of same example
+//suppose p2 gets rejected after 1 sec
+
+//then PROMISE.ALL will ALSO BE A FAILURE, it will throw an error. and  the error thrown will be same error returned by p2.
+//immedeately as error happened, it ise returned (will not wait for other promises to reject resolve whatever)
+
+//thus after 1 sec OP: Error which was thrown by p2
+
+//what happens to p1 and p3? their api calls fail? no.
+
+//p1 and p3 will accept or reject normally .
+
+//but promise.all gets rejected if ANY of the promises is rejected!! and output is [err(i)] ith promise that got rejected
+/////////////////
+
+//2. Promise.allSettled()
+
+Promise.allSettled([p1,p2,p3])
+
+//suppose one of p1,p2,p3  gets rejected, it will STILL wait for other promises to settle and after (max(time taken of a promise)) it will give output
+//if success, get val, if failure u get error in array
+
+//suppose p3 fails (i.e after 2 sec we get to know it has failed) .. no worries, we keep waiting fo others to settle and after all are done (3s taken by p1) we present output
+[val1,val2,err3];
+
+//safest option among all
 
 
+////////////////
 
+//3. Promise.race()
+ 
+Promise.race([p1,p2,p3]);
+
+//same example, p2 is done by 1 sec, then the value returned will be of first settled promise
+
+//whichever promise 'settles' first, that is returned
+
+//ans will be (val2)
+//what if p2 fails? error will be thrown
+//ans will be (err2)
+////////////////
+
+//4. Promise.any()
+
+Promise.any([p1,p2,p3]);
+
+//same example, but here it will wait and return the FIRST promise which is SUCCESSFUL
+
+//if p2 is successfull, ans is (val 2)
+//if p2 is rejected, promise.any() ignores p2 and waits for next successful promise maybe (val3)
+//what if all promises fail? return result will be an "aggregated error"
+// it will be an array of all errors
+// ans will be [err1,err2,err3]
+
+//how to see aggr error?
+
+Promise.any([p1,p2,p3])
+.then((res) => {
+  console.log(res);
+})
+.catch((err)=> {
+  console.error(err); // this will give one line saying aggregate error: all promises rejected
+  console.log(err.errors); //this line will give you all error objects in an array 
+})
+
+//errors[i] gives specific error.
+
+/////////////////
+
+//can check different ways of execution on vid.
+
+//never have uncaught errors, means u have no idea about error and u havent done error handling
+
+//NOTE: all these api return OBJECTS containing returned value, status (fulfilled,reject,etc) and other details of output
+
+//* settle means either resolve or reject (basically complete execution)
+//*resolve, success, fulfilled same thing
+//*reject, failure, rejected same thing

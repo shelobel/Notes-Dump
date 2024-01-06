@@ -1498,6 +1498,251 @@ Promise.any([p1,p2,p3])
 
 //NOTE: all these api return OBJECTS containing returned value, status (fulfilled,reject,etc) and other details of output
 
-//* settle means either resolve or reject (basically complete execution)
-//*resolve, success, fulfilled same thing
-//*reject, failure, rejected same thing
+// * settle means either resolve or reject (basically complete execution)
+// * resolve, success, fulfilled same thing
+// * reject, failure, rejected same thing
+
+////////////////
+// THIS KEYWORD
+
+//Behavioiur of this keyword in different cases:-
+
+//1. this keyword in global space
+
+        console.log(this);//this keyword in global space always returns the globalObject - window, global
+
+        //output in browser: 
+        Window {window: Window, self:Window,..} //on the browser it is giving window because IN BROWSERS GLOBALOBJECT IS WINDOW
+
+        //but javascript runtime env in different spaces, global object can be diff. (in nodejs, in other env etc.)
+
+        //2. this keyword inside a function
+
+        function x() {
+          console.log(this);
+        }
+
+        x();
+
+        //output:
+        Window {window: Window, self:Window,..} //not same as global space op
+
+        //this keyword works differently in strict mode and non-strict mode. All these are non strict mode
+        //if u use 
+        "use strict";
+        //on top of ur file, ur js will run in strict mode.
+
+        //!! thus in strict mode we observe output of this inside function as:-
+
+        undefined
+
+        //therefore inside a function the value of this keyword depends on strict/non-strict mode
+
+        //this substitution: - if the value of this keyword is undefined or null, this will be replaced with globalObject ONLY IN NON-STRICT mode.
+
+        //consider using strict mode now on:-
+        "use strict";
+
+        x(); 
+        //output: 
+        undefined
+
+        //however:
+        window.x();
+        //output:
+        Window {..} //window object
+
+        //thus this keyword value depends on HOW the function is called
+            // if the funciton is called WITHOUT any reference its value is undefined
+            // if it is called with ref of a calling object, it takes the value of calling object.
+
+// 2. this inside an object's method
+
+        //when a function is created within an object (encapsulated)
+        //it is termed as a method (same thing tho)
+
+        const obj = {
+          a: 10,
+          x: function () {
+            console.log(this)
+          },
+        };
+
+        obj.x();
+
+        //output:
+        {a: 10, x: f}
+
+        //this meansssss: whenever you are inside a 'method' the value of this keyword is the object where this method is present.
+        //(ofc u should understand this definition as its close to cpp oops)
+        console.log(this.a);
+        //output will be??
+        10
+        //GOOD
+
+//3. call apply bind methods (sharing methods)
+        //The value of this can be modified using call, apply and bind methods
+        // objects can share member methods using .call('objectname')
+
+        const student = {
+          name: "Akshay",
+          printName: function() {
+            console.log(this.name);
+          },
+        };
+
+        student.printName(); //prints the object containing Akshay name and function printName
+
+        student.printName(this.name);
+        //prints output:
+        Akshay
+
+        //consider another example-
+
+        const student2 = {
+          name: "Deepika",
+        };
+
+        student.printName.call(student2); // value fo this = student2
+        //this concept is called function borrowing, where we are using a function from an object to help a different object.
+
+        //this is going to print output:
+        Deepika
+
+
+
+//4. This function inside arrow funcitons
+
+        // arrow functions dont have its OWN this binding associated to it but val of this is the value of enclosing lexical context
+
+        const obj = {
+          a: 10,
+          //enclosing lexical context
+          x: () => {
+            console.log(this);
+          },
+        };
+
+        obj.x(); //value of this will not be the obj but the ENCLOSIN LEXICAL CONTEXT
+
+        //this keyword behaves like it is present in the global space (cuz that lexical context enclosing func is at global level (object is present inside global context))
+
+        //output
+        Window {window..}  //window object
+
+        //counter example
+
+        const obj2 = {
+          a:20,
+          x: function() {
+            //enclosing lexical context
+            const y = () => {
+              console.log(this);
+            };
+            y();
+          },
+        };
+
+        obj2.x();
+
+        //output:
+        {a: 20, x: f} // obj2 is the value of this now 
+
+        //why?? because the lexical context enclosing the arrow function is the (function x) thus this will behvae exactly how it will behave inside function x!! i.e. for a function, val of this is the object.
+        //it is as if the arrow function is not there only!
+
+
+//5. this keyword inside DOM
+
+        <button onClick="alert(this)">Click me</button>
+
+        //op on clicking:
+        [object HTMLButtonElement]
+
+        //this inside DOM elements => reference to the HTML element
+
+
+//CALL,APPLY and BIND methods
+
+const student = {
+  name: "Akshay",
+  printName: function() {
+    console.log(this.name);
+  },
+};
+
+student.printName(); //prints the object containing Akshay name and function printName
+
+student.printName(this.name);
+//prints output:
+Akshay
+
+//consider another example-
+
+const student2 = {
+  name: "Deepika",
+};
+
+student.printName.call(student2); // value fo this = student2
+//this concept is called function borrowing, where we are using a function from an object to help a different object.
+
+//this is going to print output:
+Deepika
+
+//however in general sense we dont write functions inside objects:-
+
+const student1 = {
+  name: "Akshay",
+};
+
+const student2 = {
+  name: "Baby",
+};
+
+let printName = function() {
+  console.log(this.name);
+}
+
+printName.call(student1);
+//output:
+Akshay
+
+printName.call(student2);
+//output:
+Baby
+
+//suppose function has more arguments?
+
+let printName = function(town,state) {
+  console.log(this.name + " hails from " + town + ", " + state);
+}
+
+//hence, first argument in call method is always the reference to the object
+
+printName.call(student1,"Durgapur","WB");
+
+//apply method:-
+//instead of comma seperated arguments in call, we pass a second argument of the list of those arguments
+
+printName.apply(student1,["Durgapur","WB"]);
+
+//Bind method:-
+
+//Instead of directly calling a method like in call, bind method binds the method (printfullName here) with the object and returns us the copy of that method
+//NOTE: it doesnt directly call the function (like prev methods) it jsut keeps a copy which can be invoked later
+let printMyName = printName.bind(student2, "Mumbai", "Maharashtra");
+printMyName(); //since it is a function after all
+//output:
+
+Baby hails from Mumbai, Maharashtra
+
+
+
+
+
+
+
+
+
+
+ 

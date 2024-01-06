@@ -382,13 +382,50 @@ function Stylesheet(props) {
                                                         // * u should not cause side effects. eg: http requests
 // 3. render() :- // * only required method
                   // * read props & state and return jsx
+                  // * render func is a pure func it always renders the same UI 
                   // * u should not change state or interact with DOM or make ajax calls
                   // * children components lifecycle methods are also executed
 // 4. componentDidMount() :- // * invoked immedeatedly after a comp and all its children comp have been rendered to the DOM
-// * you can cause side effects. eg: interact with the DOM or perform any ajax calls to load data
+                             // * you can cause side effects. eg: interact with the DOM or perform any ajax calls to load data
 
+//order of execution:
 
+//  LifecycleA constructor
+//  LifecycleA getDerivedStateFromProps
+//  LifecycleA render
+//  LifecycleA componentDidMount
 
+//componentDidMount always takes place last (i.e after all functions as well as all child components of the exisitng component hav been rendered)
 
+//suppose render method of lifecycleA has :-
+render() {
 
+  console.log('LifecycleA render');
+
+  return (
+    <div>
+      LifecycleA
+      <LifecycleB/>
+    </div>
+  )
+}
+
+//means lifecycleB is a child then order of execution will be
+
+//  LifecycleA constructor
+//  LifecycleA getDerivedStateFromProps
+//  LifecycleA render
+//  LifecycleB constructor
+//  LifecycleB getDerivedStateFromProps
+//  LifecycleB render
+//  LifecycleB componentDidMount
+//  LifecycleA componentDidMount
+
+//Updating LifeCycle Methods:
+// 1. static getDerivedStateFromProps( props, state) :- // * method is called every time a component is re-rendered
+                                                        // * sets the state
+                                                        // * u should not cause side effects, eg: HTTP requests
+// 2. shouldComponentUpdate( nextProps, nextState) :-   // * dictates if component should re-render or not
+
+   
 

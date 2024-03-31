@@ -881,7 +881,7 @@ const users = [
 //what will u use?
 
 //A. map to be used.
-
+ 
 const output = users.map(x => x.firstName + " " + x.lastName);
 
 //ques: how many ppl have same age should be printed? print all ages and their frequencies
@@ -959,7 +959,7 @@ createOrder(cart, function (orderId) {
 
 const promise = createOrder(cart); //createOrder is an async operation.. 
 //so before its execution promise var is allocated an empty object with a data field and placeholder 'undefined' {data: undefined} 
-//ans after async op is completed, it fills this empty object with the returned data and promise will have these orderdetails
+//and after async op is completed, it fills this empty object with the returned data and promise will have these orderdetails
 
 //next step
 

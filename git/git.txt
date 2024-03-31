@@ -65,7 +65,37 @@ $ git restore first.txt   // this will discard all the new changes in that file
 5. thn commit the files with a message
 6. thn create a repo link on github .. copy that, remember there commands are given to push to repo
 7. thn use $ git remote add origin <link of the repo>  // this will add origin (basically its the name of the link)
-thn use $ git push -u origin master   // to push the code to the repo 
+8. $ git push -u origin master   // to push the code to the repo 
+
+//8. WILL NOT WORK DIRECTLY ANYMORE.. SPECIAL TOKEN AUTH NEEDED NOW ONWARDS 
+LEMME WALK U THROUGH it:
+
+//if you get this on terminal: 
+     
+     remote: Support for password authentication was removed on August 13, 2021.
+     remote: Please see https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+     fatal: Authentication failed for '<repo-link>
+
+//follow the steps below:-
+
+  1) Create a general personal access token in github (through profile settings)
+  //make sure all the permissions are checked (repo edit, del etc etc. just select all.. no jhanjhat)
+  //copy this token
+
+  2) in mac go to spotlight search and type keychain access 
+  //this is where mac stores passwords of internet sites.. search for github, if already existing then modify it otherwise create new.
+  // create github.com, username type username and for password paste the token.
+  //save changes
+
+  3) now run same command on terminal
+  $ git push -u origin master/main 
+
+  4) it will ask for username: type github username (eg. shelobel)
+     it will ask for password: paste the TOKEN
+
+  //that's it! command will work, no more auth issues
+
+  ----------------------------
 
 // if you have permission issue thn check codewithharry git tutorial playlist video no. 13 for SSG and GPG key settings of github
 -------------------------------------------------------------------------------------------------------------------
